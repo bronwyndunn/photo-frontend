@@ -1,12 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './components/App';
+import Home from './components/Home';
+import PhotoGrid from './components/PhotoGrid';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
 import configureStore from './store/store';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { Switch, Route } from 'react-router';
+
 
 const store = configureStore();
 
@@ -16,7 +20,12 @@ const client = new ApolloClient({
 
 ReactDOM.render(
     <ApolloProvider store={store} client={client}>
-        <App />
+        <Router>
+            <Switch>
+                <Route exact path='/' component={Home}/>
+                <Route path='/photos' component={PhotoGrid}/>
+            </Switch>
+        </Router>
     </ApolloProvider>,
     document.getElementById('root'));
 
