@@ -63,35 +63,24 @@ class Home extends Component {
     this.setState({
       visible: false,
     });
-  }  
+  }
 
   render() {
-    const { visible, confirmLoading, ModalText } = this.state;      
+    const { visible, confirmLoading, ModalText } = this.state;
     return (
       <div className="App">
-      <Query query={GET_FEATURED}>
-      {({ loading, data }) => !loading && (
-        <>
-            <h1>heey</h1>
-
-            <ul>
-            {data.getFeatured.map((item) => <li>{item.url}</li>)}
-            </ul>
-        </>
-      )}
-      </Query>
             <NavBar />
             <HomeCarousel />
-         <Button 
-            className="carousel-button" onClick={this.showModal} 
-            type="primary" size="large" 
-            style={{ position: 'absolute', 
-                    top: '70%', 
+         <Button
+            className="carousel-button" onClick={this.showModal}
+            type="primary" size="large"
+            style={{ position: 'absolute',
+                    top: '70%',
                     left: '50%',
                     transform: 'translate(-50%, -50%)',
                 }}>
                 Find your team
-        </Button> 
+        </Button>
         <Modal
           title="Title"
           visible={visible}

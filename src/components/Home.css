@@ -4,7 +4,13 @@
     overflow: hidden;
     object-fit: cover;
 }
- 
+
+.photo-grid {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
 @-webkit-keyframes fadeInLeft {
     from {
         opacity:0;
@@ -59,7 +65,7 @@
     -webkit-transform: translate3d(-50%, 100%, 0);
     transform: translate3d(-50%, 100%, 0);
   }
- 
+
   to {
     opacity: 1;
     -webkit-transform: translate(-50, -50);
@@ -72,7 +78,7 @@
     -webkit-transform: translate3d(-50%, 100%, 0);
     transform: translate(-50%, -50%)slate3d(-50%, 100%, 0);
   }
- 
+
   to {
     opacity: 1;
     -webkit-transform: translate(-50, -50);
