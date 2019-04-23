@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import Home from './components/Home';
 import PhotoGrid from './components/PhotoGrid';
+import StripeProviderForm from './components/Stripe/StripeProviderForm';
+import {Elements, StripeProvider} from 'react-stripe-elements';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
 import configureStore from './store/store';
@@ -24,6 +26,7 @@ ReactDOM.render(
             <Switch>
                 <Route exact path='/' component={Home}/>
                 <Route path='/photos' component={PhotoGrid}/>
+                <Route path='/checkout' component={StripeProviderForm}/>
             </Switch>
         </Router>
     </ApolloProvider>,
