@@ -4,6 +4,7 @@ import './index.css';
 import Home from './components/Home';
 import PhotoGrid from './components/PhotoGrid';
 import StripeProviderForm from './components/Stripe/StripeProviderForm';
+import { Dropzone } from './components/Dropzone'
 import {Elements, StripeProvider} from 'react-stripe-elements';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
@@ -22,7 +23,7 @@ const client = new ApolloClient({
 });
 
 ReactDOM.render(
-    <ApolloProvider store={store} client={client}>
+    <ApolloProvider store={ store } client={ client }>
         <Router>
             <Switch>
                 <Route exact path='/' component={Home}/>
@@ -30,12 +31,13 @@ ReactDOM.render(
                     <Route path='/photos' component={PhotoGrid}/>
                     <Route path='/checkout' component={StripeProviderForm}/>
                 </EnsureLoggedInContainer>
+                <Route path='/admin' component={ Dropzone }/>
             </Switch>
         </Router>
     </ApolloProvider>,
-    document.getElementById('root'));
+    document.getElementById('root'))
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+serviceWorker.unregister()
