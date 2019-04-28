@@ -1,21 +1,20 @@
-import React, { useCallback } from 'react';
+import React, { useCallback } from 'react'
 import { useDropzone } from 'react-dropzone'
 
 const Dropzone = () => {
-  const maxSize = 1048576;
+  const maxSize = 1048576
 
   const onDrop = useCallback(acceptedFiles => {
-    console.log(acceptedFiles);
-  }, []);
+    console.log(acceptedFiles)
+  }, [])
 
   const { isDragActive, getRootProps, getInputProps, isDragReject, acceptedFiles, rejectedFiles } = useDropzone({
     onDrop,
-    accept: 'image/png',
     minSize: 0,
-    maxSize,
-  });
+    maxSize
+  })
 
-  const isFileTooLarge = rejectedFiles.length > 0 && rejectedFiles[0].size > maxSize;
+  const isFileTooLarge = rejectedFiles.length > 0 && rejectedFiles[0].size > maxSize
 
   return (
     <div className="container text-center mt-5">
@@ -31,7 +30,7 @@ const Dropzone = () => {
         )}
       </div>
     </div>
-  );
+  )
 }
 
 export default Dropzone
