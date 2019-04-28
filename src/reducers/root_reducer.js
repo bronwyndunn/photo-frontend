@@ -1,7 +1,7 @@
-const initialState = {};
+// const initialState = {};
 
-const rootReducer = (initialState) => {
-    return initialState
+const rootReducer = () => {
+    return {}
 };
 
 export default rootReducer;

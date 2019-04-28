@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router';
 import './Home.css';
-import { Carousel, Button } from 'antd';
+import { Carousel } from 'antd';
 
 class HomeCarousel extends Component {
 
@@ -12,7 +11,7 @@ class HomeCarousel extends Component {
             <div className='carousel-image'><img src={require("../images/lax1.jpeg")} /></div>
             <div className='carousel-image'><img src={require("../images/lax4.JPG")} /></div>
             <div className='carousel-image'><img src={require("../images/lax3.jpeg")} /></div>
-         </Carousel>        
+         </Carousel>
         </div>
     );
   }
