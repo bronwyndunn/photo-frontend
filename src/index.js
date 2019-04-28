@@ -3,6 +3,7 @@ import Home from './components/Home'
 import PhotoGrid from './components/PhotoGrid'
 import StripeProviderForm from './components/Stripe/StripeProviderForm'
 import { Dropzone } from './components/Dropzone'
+import { Uploader } from './components/Dropzone'
 
 import React from 'react'
 import ReactDOM from 'react-dom'
