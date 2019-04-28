@@ -18,6 +18,7 @@ export const GET_TEAMS = gql`
 
 class PhotoGrid extends Component {
   render() {
+      console.log(this.props);
     return (
         <div>
         <h1>Photo grid</h1>
@@ -25,23 +26,7 @@ class PhotoGrid extends Component {
           <Query query={GET_TEAMS}>
           {({ loading, data }) => !loading && (
             <>
-                {data.getTeams.map((team) =>
-                     <Card
-                     style={{ width: 300 }}
-                     cover={<img alt="example" src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png" />}
-                     actions={[<Icon type="setting" />, <Icon type="edit" />, <Icon type="ellipsis" />]}
 
-                     >
-                         <Meta
-                          avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
-                          title="Card title"
-                        />
-                        <p>{team.name}</p>
-                        <p>{team.thumbnail}</p>
-                        <p>{team.roster}</p>
-
-                     </Card>
-                 )}
             </>
           )}
           </Query>

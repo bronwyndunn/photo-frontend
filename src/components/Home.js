@@ -8,6 +8,7 @@ import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import { withApollo } from 'react-apollo';
 import { Provider, connect } from 'react-redux';
+import jsonwebtoken from 'jsonwebtoken';
 
 const { Title } = Typography;
 
@@ -69,7 +70,10 @@ class Home extends Component {
       ModalText: 'Verifying...',
       confirmLoading: true,
     });
-    this.loginUser().then(() => {
+    this.loginUser().then((res) => {
+        // const { email } = jsonwebtoken.decode(res.data.login);
+        const token = res.data.login;
+        localStorage.setItem("token", token);
         this.setState({
             visible: false,
             confirmLoading: false,
