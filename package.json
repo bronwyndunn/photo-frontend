@@ -13,6 +13,7 @@
     "graphql-tag": "^2.10.1",
     "grommet": "^2.5.5",
     "grommet-icons": "^4.2.0",
+    "jsonwebtoken": "^8.5.1",
     "less": "^3.9.0",
     "less-loader": "^4.1.0",
     "node-sass": "^4.11.0",

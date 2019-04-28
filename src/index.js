@@ -12,6 +12,7 @@ import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Switch, Route } from 'react-router';
+import EnsureLoggedInContainer from './components/EnsureLoggedInContainer';
 
 
 const store = configureStore();
@@ -25,8 +26,10 @@ ReactDOM.render(
         <Router>
             <Switch>
                 <Route exact path='/' component={Home}/>
-                <Route path='/photos' component={PhotoGrid}/>
-                <Route path='/checkout' component={StripeProviderForm}/>
+                <Route component={EnsureLoggedInContainer}>
+                    <Route path='/photos' component={PhotoGrid}/>
+                    <Route path='/checkout' component={StripeProviderForm}/>
+                </Route>
             </Switch>
         </Router>
     </ApolloProvider>,
