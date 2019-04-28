@@ -17,7 +17,7 @@ import { Switch, Route } from 'react-router';
 const store = configureStore();
 
 const client = new ApolloClient({
-  uri: "http://localhost:4000/graphql",
+  uri: "http://localhost:9000/graphql",
 });
 
 ReactDOM.render(
