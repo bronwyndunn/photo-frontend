@@ -1,25 +1,41 @@
 import React from 'react';
 import { connect } from 'react-redux';
-
-const isLoggedIn = true;
+import jsonwebtoken from 'jsonwebtoken';
+import { withRouter } from 'react-router';
 
 class EnsureLoggedInContainer extends React.Component {
-  componentDidMount() {
-      console.log("thinggg");
-      const token = localStorage.getItem('token') || '';
-      console.log(token);
+    constructor(props) {
+        super(props);
 
+        this.state = {
+            isLoggedIn: "pending"
+        }
+    }
+  componentDidMount() {
+      const { isLoggedIn } = this.state;
+      const token = localStorage.getItem('token') || '';
+      if (token) {
+          const decoded = jsonwebtoken.decode(token, {complete: true});
+          const tokenExp = decoded.payload.exp;
+          this.setState({ isLoggedIn: new Date().getTime() / 1000 < tokenExp })
+      }
+      else {
+          this.setState({isLoggedIn: false})
+          this.props.history.push('/');
+      }
     if (!isLoggedIn) {
+        console.log("prop history");
       this.props.history.push('/');
     }
   }
 
   render() {
-      console.log("in the thingggggg");
+      const { isLoggedIn } = this.state;
+      console.log(this.state);
     if (isLoggedIn) {
       return this.props.children
     } else {
-      return null
+      return <p>not logged in</p>
     }
   }
 }
@@ -29,7 +45,7 @@ class EnsureLoggedInContainer extends React.Component {
 // platforms (Native) or routing libraries have similar ways to find
 // the current position in the app.
 function mapStateToProps(state) {
- 
+
 }
 
-export default connect(mapStateToProps)(EnsureLoggedInContainer)
+export default withRouter(EnsureLoggedInContainer)

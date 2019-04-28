@@ -26,10 +26,10 @@ ReactDOM.render(
         <Router>
             <Switch>
                 <Route exact path='/' component={Home}/>
-                <Route component={EnsureLoggedInContainer}>
+                <EnsureLoggedInContainer>
                     <Route path='/photos' component={PhotoGrid}/>
                     <Route path='/checkout' component={StripeProviderForm}/>
-                </Route>
+                </EnsureLoggedInContainer>
             </Switch>
         </Router>
     </ApolloProvider>,

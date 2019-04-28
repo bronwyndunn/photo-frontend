@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router';
 import './Home.css';
 import HomeCarousel from './HomeCarousel';
 import NavBar from './NavBar';
-import { Carousel, Typography, Form, Input, Button, Modal, Icon } from 'antd';
-import { Query } from 'react-apollo';
+import { Typography, Form, Input, Button, Modal, Icon } from 'antd';
 import gql from 'graphql-tag';
 import { withApollo } from 'react-apollo';
-import { Provider, connect } from 'react-redux';
 import jsonwebtoken from 'jsonwebtoken';
 
 const { Title } = Typography;
@@ -71,7 +68,7 @@ class Home extends Component {
       confirmLoading: true,
     });
     this.loginUser().then((res) => {
-        // const { email } = jsonwebtoken.decode(res.data.login);
+        const { email } = jsonwebtoken.decode(res.data.login);
         const token = res.data.login;
         localStorage.setItem("token", token);
         this.setState({
