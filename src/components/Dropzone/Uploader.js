@@ -5,8 +5,13 @@ import { Dropzone } from './'
 import React, { Component } from 'react'
 import { Redirect } from 'react-router'
 import { Query, Mutation } from 'react-apollo'
+<<<<<<< HEAD
 import gql from 'graphql-tag'
 import { Form, Input, Button } from 'antd';
+=======
+import { Button } from 'antd'
+import gql from 'graphql-tag'
+>>>>>>> f77a9182ef7e71d4fe7351d9e664c3bddf10ba9e
 
 
 export const GET_FEATURED = gql`
@@ -22,6 +27,7 @@ class Uploader extends Component {
   constructor(props) {
     super(props)
 
+<<<<<<< HEAD
     this.state = {
         teamID: null,
         eventID: null,
@@ -45,19 +51,26 @@ class Uploader extends Component {
   handleSubmit(e) {
       e.preventDefault()
       console.log(this.state);
+=======
+>>>>>>> f77a9182ef7e71d4fe7351d9e664c3bddf10ba9e
   }
 
   render() {
     return (
       <div className='Uploader'>
+<<<<<<< HEAD
         <Dropzone getAcceptedFiles={this.getAcceptedFiles}/>
         <WrappedPhotoUploadForm onChange={this.handleFieldChange} />
         <Button type="primary" htmlType="submit" onClick={this.handleSubmit}>Submit</Button>
+=======
+        <Dropzone />
+>>>>>>> f77a9182ef7e71d4fe7351d9e664c3bddf10ba9e
       </div>
     )
   }
 }
 
+<<<<<<< HEAD
 class PhotoUploadForm extends React.Component {
     constructor(props) {
         super(props);
@@ -89,4 +102,6 @@ class PhotoUploadForm extends React.Component {
 
 const WrappedPhotoUploadForm = Form.create({ name: 'horizontal_login' })(PhotoUploadForm);
 
+=======
+>>>>>>> f77a9182ef7e71d4fe7351d9e664c3bddf10ba9e
 export default Uploader
