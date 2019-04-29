@@ -82,19 +82,21 @@ class Uploader extends Component {
     // };
     // reader.readAsDataURL(acceptedFiles[0])
 
-    console.log('stateeeee', this.state)
-    const photos = {
-      file: acceptedFiles[0],
-      orgId,
-      teamId,
-      eventId
-    }
+    console.log('stateeeee', acceptedFiles[0])
 
     const file = new ReactNativeFile({
       uri: acceptedFiles[0].path,
       name: acceptedFiles[0].name,
       type: acceptedFiles[0].type
     })
+
+    const photos = {
+      photo: file,
+      // photo: acceptedFiles[0],
+      orgId,
+      teamId,
+      eventId
+    }
 
     console.log('photos', photos)
 
