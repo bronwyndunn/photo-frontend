@@ -2,8 +2,7 @@ import React, { useCallback } from 'react'
 import { useDropzone } from 'react-dropzone'
 
 const Dropzone = (props) => {
-  const maxSize = 1048576
-
+  const maxSize = 8000000
   const onDrop = useCallback(acceptedFiles => {
     props.getAcceptedFiles(acceptedFiles)
   }, [])

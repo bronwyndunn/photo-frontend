@@ -18,9 +18,9 @@ export const GET_FEATURED = gql`
 }
 `
 export const loginMutation = gql`
-    mutation login($credentials: LoginInput!) {
-        login(credentials: $credentials)
-    }
+  mutation login($credentials: LoginInput!) {
+    login(credentials: $credentials)
+  }
 `
 
 class Home extends Component {
@@ -54,12 +54,12 @@ class Home extends Component {
 
 
   loginUser() {
-      const { email, coupon } = this.state;
-      const credentials = { "email": email, "coupon": coupon }
-      return this.props.client.mutate({
-          mutation: loginMutation,
-          variables: {credentials: credentials},
-        })
+    const { email, coupon } = this.state;
+    const credentials = { "email": email, "coupon": coupon }
+    return this.props.client.mutate({
+      mutation: loginMutation,
+      variables: { credentials }
+    })
   }
 
   handleOk() {
