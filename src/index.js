@@ -4,7 +4,7 @@ import './index.css';
 import Home from './components/Home';
 import PhotoGrid from './components/PhotoGrid';
 import StripeProviderForm from './components/Stripe/StripeProviderForm';
-import { Dropzone } from './components/Dropzone'
+import Uploader from './components/Dropzone/Uploader'
 import {Elements, StripeProvider} from 'react-stripe-elements';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
@@ -27,11 +27,11 @@ ReactDOM.render(
         <Router>
             <Switch>
                 <Route exact path='/' component={Home}/>
+                <Route path='/admin' component={ Uploader }/>
                 <EnsureLoggedInContainer>
                     <Route path='/photos' component={PhotoGrid}/>
                     <Route path='/checkout' component={StripeProviderForm}/>
                 </EnsureLoggedInContainer>
-                <Route path='/admin' component={ Dropzone }/>
             </Switch>
         </Router>
     </ApolloProvider>,
