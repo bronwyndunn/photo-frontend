@@ -9,6 +9,7 @@ import gql from 'graphql-tag'
 import { Form, Input, Button } from 'antd';
 
 
+<<<<<<< HEAD
 export const GET_FEATURED = gql`
 {
   getFeatured {
@@ -17,6 +18,13 @@ export const GET_FEATURED = gql`
 	}
 }
 `
+=======
+export const UPLOAD_FILE = gql`
+  mutation uploadFile($file: Upload!) {
+    uploadFile(file: $file)
+  }
+`;
+>>>>>>> Upload large pictures through gql
 
 class Uploader extends Component {
   constructor(props) {
@@ -43,8 +51,21 @@ class Uploader extends Component {
   }
 
   handleSubmit(e) {
-      e.preventDefault()
-      console.log(this.state);
+    e.preventDefault()
+
+    const { orgId, teamId, eventId, acceptedFiles } = this.state
+
+    const photos = {
+      files: acceptedFiles,
+      orgId,
+      teamId,
+      eventId
+    }
+
+    this.props.client.mutate({
+      mutation: ADD_PHOTOS,
+      variables: { photos }
+    })
   }
 
   render() {
