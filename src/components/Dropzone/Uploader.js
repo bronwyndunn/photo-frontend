@@ -1,12 +1,8 @@
 import NavBar from '../NavBar'
 import './Dropzone.css'
 import { Dropzone } from './'
-=======
-import { ReactNativeFile } from 'apollo-upload-client'
-
 import React, { Component } from 'react'
-import { Redirect } from 'react-router'
-import { Query, Mutation, withApollo } from 'react-apollo'
+import { withApollo } from 'react-apollo'
 import gql from 'graphql-tag'
 import { Form, Input, Button } from 'antd';
 
@@ -15,13 +11,6 @@ const ADD_PHOTOS = gql`
     addPhotos(photos: $photos)
   }
 `
-
-export const UPLOAD_FILE = gql`
-  mutation uploadFile($file: Upload!) {
-    uploadFile(file: $file)
-  }
-`;
-
 class Uploader extends Component {
   constructor(props) {
     super(props)
