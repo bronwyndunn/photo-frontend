@@ -15,7 +15,7 @@ class EnsureLoggedInContainer extends React.Component {
       const { isLoggedIn } = this.state;
       const token = localStorage.getItem('token') || '';
       if (token) {
-          const decoded = jsonwebtoken.decode(token, {complete: true});
+          const decoded = jsonwebtoken.decode(token, { complete: true });
           const tokenExp = decoded.payload.exp;
           this.setState({ isLoggedIn: new Date().getTime() / 1000 < tokenExp })
       }

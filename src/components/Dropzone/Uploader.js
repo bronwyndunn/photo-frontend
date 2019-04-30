@@ -21,22 +21,6 @@ export const UPLOAD_FILE = gql`
   }
 `;
 
-const uploadOneFile = () => {
-  return (
-    <Mutation mutation={UPLOAD_FILE}>
-      {uploadFile => (
-        <input
-        type="file"
-        required
-        onChange={({ target: { validity, files: [file] } }) =>
-          validity.valid && uploadFile({ variables: { file } })
-        }
-       />
-      )}
-    </Mutation>
-  );
-};
-
 class Uploader extends Component {
   constructor(props) {
     super(props)
@@ -65,52 +49,19 @@ class Uploader extends Component {
     e.preventDefault()
 
     const { orgId, teamId, eventId, acceptedFiles } = this.state
-    console.log('acceptedFiles', acceptedFiles);
-
-    // const pic = acceptedFiles.map(file => {
-    //   return {
-    //     name: file.name,
-    //     path: file.path,
-    //     type: file.type
-    //   }
-    // })
-
-    // const reader = new FileReader()
-    // reader.onload = function(event) {
-    //   // event.target.result contains base64 encoded image
-    //    console.log('888888888', event.target.result);
-    // };
-    // reader.readAsDataURL(acceptedFiles[0])
-
-    console.log('stateeeee', acceptedFiles[0])
-
-    const file = new ReactNativeFile({
-      uri: acceptedFiles[0].path,
-      name: acceptedFiles[0].name,
-      type: acceptedFiles[0].type
-    })
 
     const photos = {
-      photo: file,
-      // photo: acceptedFiles[0],
+      files: acceptedFiles,
       orgId,
       teamId,
       eventId
     }
 
-    console.log('photos', photos)
-
-    // this.props.client.mutate({
-    //   mutation: ADD_PHOTOS,
-    //   variables: { photos }
-    // })
     this.props.client.mutate({
-      mutation: UPLOAD_FILE,
-      variables: { file }
+      mutation: ADD_PHOTOS,
+      variables: { photos }
     })
   }
-
-
 
   render() {
     return (

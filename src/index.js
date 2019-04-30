@@ -4,12 +4,13 @@ import './index.css';
 import Home from './components/Home';
 import PhotoGrid from './components/PhotoGrid';
 import StripeProviderForm from './components/Stripe/StripeProviderForm';
-// import Uploader from './components/Dropzone/Uploader'
-import { Uploader } from './components/Uploader'
+import Uploader from './components/Dropzone/Uploader'
+// import { Uploader } from './components/Uploader'
 import {Elements, StripeProvider} from 'react-stripe-elements';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
 import configureStore from './store/store';
+// think about using apolo-client instead of apollo-boost
 import { ApolloClient } from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
 import { createUploadLink } from 'apollo-upload-client'
