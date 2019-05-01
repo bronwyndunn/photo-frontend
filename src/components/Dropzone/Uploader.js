@@ -18,7 +18,7 @@ class Uploader extends Component {
     this.state = {
         teamId: null,
         eventId: null,
-        orgId: null,
+        playerId: null,
         acceptedFiles: []
     }
 
@@ -38,11 +38,11 @@ class Uploader extends Component {
   handleSubmit(e) {
     e.preventDefault()
 
-    const { orgId, teamId, eventId, acceptedFiles } = this.state
+    const { playerId, teamId, eventId, acceptedFiles } = this.state
 
     const photos = {
       files: acceptedFiles,
-      orgId,
+      playerId,
       teamId,
       eventId
     }
@@ -88,7 +88,7 @@ class PhotoUploadForm extends Component {
             <Input onChange={e => this.handleChange(e, 'eventId')} placeholder='eventID' />
         </Form.Item>
         <Form.Item>
-            <Input onChange={e => this.handleChange(e, 'orgId')} placeholder='orgId' />
+            <Input onChange={e => this.handleChange(e, 'playerId')} placeholder='playerId' />
         </Form.Item>
       </Form>
     );
