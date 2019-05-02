@@ -1,0 +1,7 @@
+.player-wrapper {
+    display: flex;
+    flex-grow: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 60px;
+}

@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import Home from './components/Home';
 import PhotoGrid from './components/PhotoGrid';
+import TeamPage from './components/TeamPage';
+import PlayerPage from './components/PlayerPage';
 import StripeProviderForm from './components/Stripe/StripeProviderForm';
 import Uploader from './components/Dropzone/Uploader'
 // import { Uploader } from './components/Uploader'
@@ -41,6 +43,8 @@ ReactDOM.render(
                 <Route path='/admin' component={ Uploader }/>
                 <EnsureLoggedInContainer>
                     <Route path='/photos' component={ PhotoGrid }/>
+                    <Route path='/teams' component={ TeamPage }/>
+                    <Route path='/player/:playerId' component={ PlayerPage }/>
                     <Route path='/checkout' component={ StripeProviderForm }/>
                 </EnsureLoggedInContainer>
             </Switch>
