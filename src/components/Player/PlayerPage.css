@@ -5,3 +5,7 @@
     justify-content: center;
     margin-top: 60px;
 }
+
+.ant-skeleton {
+    margin-top: -500px;
+}

@@ -6,6 +6,8 @@ import { Typography, Form, Input, Button, Modal, Icon } from 'antd';
 import gql from 'graphql-tag';
 import { withApollo } from 'react-apollo';
 import jsonwebtoken from 'jsonwebtoken';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+
 
 const { Title } = Typography;
 
@@ -75,7 +77,7 @@ class Home extends Component {
             visible: false,
             confirmLoading: false,
         });
-        this.props.history.push('/photos');
+        this.props.history.push('/teams');
     })
     .catch((er) => {
         this.setState({

@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import Home from './components/Home';
 import PhotoGrid from './components/PhotoGrid';
-import TeamPage from './components/TeamPage';
-import PlayerPage from './components/PlayerPage';
+import TeamPageContainer from './containers/TeamPageContainer';
+import PlayerPage from './components/Player/PlayerPage';
 import StripeProviderForm from './components/Stripe/StripeProviderForm';
 import Uploader from './components/Dropzone/Uploader'
 // import { Uploader } from './components/Uploader'
@@ -37,18 +37,20 @@ const client = createApolloClient()
 
 ReactDOM.render(
     <ApolloProvider store={ store } client={ client }>
-        <Router>
-            <Switch>
-                <Route exact path='/' component={Home}/>
-                <Route path='/admin' component={ Uploader }/>
-                <EnsureLoggedInContainer>
-                    <Route path='/photos' component={ PhotoGrid }/>
-                    <Route path='/teams' component={ TeamPage }/>
-                    <Route path='/player/:playerId' component={ PlayerPage }/>
-                    <Route path='/checkout' component={ StripeProviderForm }/>
-                </EnsureLoggedInContainer>
-            </Switch>
-        </Router>
+        <Provider store={store}>
+            <Router>
+                <Switch>
+                    <Route exact path='/' component={Home}/>
+                    <Route path='/admin' component={ Uploader }/>
+                    <EnsureLoggedInContainer>
+                        <Route path='/photos' component={ PhotoGrid }/>
+                        <Route path='/teams' component={ TeamPageContainer }/>
+                        <Route path='/player/:playerId' component={ PlayerPage }/>
+                        <Route path='/checkout' component={ StripeProviderForm }/>
+                    </EnsureLoggedInContainer>
+                </Switch>
+            </Router>
+        </Provider>
     </ApolloProvider>,
     document.getElementById('root'))
 

@@ -22,7 +22,8 @@ class NavBar extends Component {
     render() {
         return (
             <div className='navbar-wrapper'>
-                <Menu className='navbar' onClick={this.handleClick} selectedKeys={[this.state.current]} mode="horizontal">
+                <div className='navbar-logo'></div>
+                <Menu className='navbar' onClick={this.handleClick} selectedKeys={[this.state.current]} mode="horizontal" style={{borderBottom: 'none'}}>
                 	<SubMenu title={<span className="submenu-title-wrapper">
                 		<Icon type="camera" />Gallery</span>}>
                 		<MenuItemGroup title="Lacrosse">

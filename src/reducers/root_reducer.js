@@ -1,7 +1,7 @@
 // const initialState = {};
 
 const rootReducer = () => {
-    return {}
+    return {test: "hi"}
 };
 
 export default rootReducer;

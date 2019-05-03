@@ -1,6 +1,8 @@
 .navbar-wrapper {
-    box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px;
-    margin-bottom: 32px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 16px 0 16px 32px;
 }
 
 .navbar {
@@ -11,4 +13,15 @@
 .navbar-title {
     font-size: 44px;
     font-weight: 800;
+}
+
+.navbar-logo {
+    background-image: url('../images/transparent-V2.png');
+    display: block;
+    height: 45px;
+    width: 300px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    flex-grow: 1;
+
 }
