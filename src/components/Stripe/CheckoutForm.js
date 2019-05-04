@@ -29,7 +29,7 @@ class CheckoutForm extends Component {
     if (this.state.complete) return <h1>Purchase Complete</h1>;
     const { playerState } = this.props.props;
     const { email } = jsonwebtoken.decode(localStorage.getItem('token'));
-    const amount = playerState.amount * 32;
+    const amount = playerState.amount * 25;
     const photoIds = playerState.cartPhotoIds;
     return (
      <ApolloConsumer>
