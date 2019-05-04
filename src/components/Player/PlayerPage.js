@@ -44,8 +44,9 @@ class PlayerPage extends Component {
         this.setState({ visible: true, currentPhotoId: photoId })
     }
 
-    handleAddToCart() {
-        this.props.addItemToCart();
+    handleAddToCart(photoId) {
+        console.log(photoId);
+        this.props.addItemToCart(photoId);
         this.setState({ visible: false })
     }
 
@@ -70,7 +71,7 @@ class PlayerPage extends Component {
           <div className='player-grid-header'>
             <h3 className='player-name'>{playerState.player}</h3>
             <Icon type="shopping-cart" style={{ fontSize: '32px', transform: 'translateY(-6px)' }} theme="outlined" onClick={() => this.props.history.push('/checkout')}/>
-            <p>{playerState.cart}</p>
+            <p>{playerState.amount}</p>
 
           </div>
           <Query query={GET_PHOTOS_BY_PLAYER} variables={{ playerId: playerId}}>
@@ -85,7 +86,7 @@ class PlayerPage extends Component {
                             cover={<img alt="example" src={player.image.url} onClick={() => this.showModal(player.id)} />}
 
                           >
-                            <CartButton handleAddToCart={this.handleAddToCart}/>
+                            <CartButton handleAddToCart={() => this.handleAddToCart(player.id)}/>
                           </Card>
                       </div>
                     )}

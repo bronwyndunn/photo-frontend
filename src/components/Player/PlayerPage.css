@@ -30,6 +30,11 @@
     background-repeat: no-repeat;
 }
 
+.individual-player-photo {
+    display: block;
+    height: 600px;
+}
+
 .individual-player-photo img {
     display: block;
     object-fit: contain;
@@ -39,7 +44,6 @@
     z-index: 100;
 
     object-position: 50% 40%;
-
 }
 
 .cart-button {

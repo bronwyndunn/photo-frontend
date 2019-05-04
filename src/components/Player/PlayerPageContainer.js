@@ -26,6 +26,6 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = dispatch => ({
     setCurrentPlayer: (player) => dispatch(setCurrentPlayer(player)),
-    addItemToCart: () => dispatch(addItemToCart())
+    addItemToCart: (playerId) => dispatch(addItemToCart(playerId))
 });
 export default connect(mapStateToProps, mapDispatchToProps)(PlayerPage);

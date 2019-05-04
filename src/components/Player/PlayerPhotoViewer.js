@@ -34,7 +34,7 @@ class PlayerPhotoViewer extends Component {
                   <div className="bounce2"></div>
                   <div className="bounce3"></div>
                 </div>
-                <div className='team-hero'><img src={data.getPhotosById[0].image.url} className='team-hero-image'/></div>
+                <div className='individual-player-photo'><img src={data.getPhotosById[0].image.url} className='team-hero-image'/></div>
                 </Modal>
             )
             }}

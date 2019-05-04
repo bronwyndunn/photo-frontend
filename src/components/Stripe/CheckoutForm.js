@@ -2,10 +2,12 @@ import React, {Component} from 'react';
 import {CardElement, injectStripe} from 'react-stripe-elements';
 import gql from 'graphql-tag'
 import { ApolloConsumer } from 'react-apollo';
+import jsonwebtoken from 'jsonwebtoken';
+
 
 export const VERIFY_CHARGE = gql`
-    query Charge($tokenId: ID!) {
-    	charge(tokenId: $tokenId)
+    mutation Charge($input: PurchaseInput!) {
+    	purchase(input: $input)
     }
 `
 class CheckoutForm extends Component {
@@ -17,29 +19,37 @@ class CheckoutForm extends Component {
   }
 
     async submit() {
-      const { token } = await this.props.stripe.createToken({name: "Name"});
-      return token.id;
+      try {
+          const { token } = await this.props.stripe.createToken({name: "Name"});
+          return token.id;
+      } catch(er) {return er}
     }
 
   render() {
     if (this.state.complete) return <h1>Purchase Complete</h1>;
+    const { playerState } = this.props.props;
+    const { email } = jsonwebtoken.decode(localStorage.getItem('token'));
+    const amount = playerState.amount * 32;
+    const photoIds = playerState.cartPhotoIds;
     return (
      <ApolloConsumer>
          {client => (
           <div className="checkout">
+            <h3>{`${playerState.amount} photos in your cart. Your total is $${amount}.`}</h3>
             <p>Would you like to complete the purchase?</p>
             <CardElement />
             <button
+              className='stripe-button'
               onClick={async () => {
-                const { data } = await client.query({
-                  query: VERIFY_CHARGE,
-                  variables: { tokenId: await this.submit() }
+                const { data } = await client.mutate({
+                  mutation: VERIFY_CHARGE,
+                  variables: { input: {email: email, amount: amount, photoIds: photoIds, token: await this.submit()} }
                 })
                 console.log(data);
-                if (data === "succeeded") this.setState({complete: true});
+                if (data.purchase === "success") this.setState({complete: true});
               }}
             >
-              Send
+              Complete Purchase
             </button>
           </div>
       )}
