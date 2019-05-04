@@ -1,17 +1,19 @@
 import React from 'react';
+import rootReducer from './reducers/root_reducer';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 import ReactDOM from 'react-dom';
 import './index.css';
 import Home from './components/Home';
 import PhotoGrid from './components/PhotoGrid';
 import TeamPageContainer from './containers/TeamPageContainer';
-import PlayerPage from './components/Player/PlayerPage';
-import StripeProviderForm from './components/Stripe/StripeProviderForm';
+import PlayerPageContainer from './components/Player/PlayerPageContainer';
+import CheckoutFormContainer from './components/Stripe/CheckoutFormContainer';
 import Uploader from './components/Dropzone/Uploader'
 // import { Uploader } from './components/Uploader'
 import {Elements, StripeProvider} from 'react-stripe-elements';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
-import configureStore from './store/store';
 // think about using apolo-client instead of apollo-boost
 import { ApolloClient } from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
@@ -21,16 +23,31 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { Switch, Route } from 'react-router';
 import EnsureLoggedInContainer from './components/EnsureLoggedInContainer';
 
+import { loadState, saveState } from './localStorage';
+
+const persistedState = loadState();
+
+const configureStore = () => (
+  createStore(
+    rootReducer,
+    persistedState,
+    applyMiddleware(thunk)
+  )
+);
 
 const store = configureStore();
+
+store.subscribe(() => {
+    saveState(store.getState());
+})
 
 const createApolloClient = (cache = {}) =>
   new ApolloClient({
     ssrMode: typeof window !== 'undefined',
     cache: new InMemoryCache().restore(cache),
     link: createUploadLink({
-      // uri: 'http://localhost:9000/graphql'
-      uri: 'http://3.212.29.209:9000/graphql'
+      uri: 'http://localhost:9000/graphql'
+      // uri: 'http://3.212.29.209:9000/graphql'
     })
   })
 
@@ -46,8 +63,8 @@ ReactDOM.render(
                     <EnsureLoggedInContainer>
                         <Route path='/photos' component={ PhotoGrid }/>
                         <Route path='/teams' component={ TeamPageContainer }/>
-                        <Route path='/player/:playerId' component={ PlayerPage }/>
-                        <Route path='/checkout' component={ StripeProviderForm }/>
+                        <Route path='/player/:playerId' component={ PlayerPageContainer }/>
+                        <Route path='/checkout' component={ CheckoutFormContainer }/>
                     </EnsureLoggedInContainer>
                 </Switch>
             </Router>

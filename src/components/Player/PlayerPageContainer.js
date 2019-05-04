@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { setCurrentPlayer, addItemToCart } from '../actions/player';
+import { setCurrentPlayer, addItemToCart } from '../../actions/player';
 
-import TeamPage from '../components/TeamPage';
+import PlayerPage from './PlayerPage';
 
-class TeamPageContainer extends Component {
+class PlayerPageContainer extends Component {
     constructor(props) {
         super(props);
     }
@@ -14,7 +14,7 @@ class TeamPageContainer extends Component {
   render() {
     return (
         <div>
-            <TeamPage />
+            <PlayerPage />
       </div>
     );
   }
@@ -28,5 +28,4 @@ const mapDispatchToProps = dispatch => ({
     setCurrentPlayer: (player) => dispatch(setCurrentPlayer(player)),
     addItemToCart: () => dispatch(addItemToCart())
 });
-
-export default connect(mapStateToProps, mapDispatchToProps)(TeamPage);
+export default connect(mapStateToProps, mapDispatchToProps)(PlayerPage);

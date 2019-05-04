@@ -31,7 +31,14 @@ export const GET_TEAM = gql`
 class TeamPage extends Component {
     constructor(props) {
         super(props);
+
+    this.handlePlayerClick = this.handlePlayerClick.bind(this);
     }
+
+  handlePlayerClick(id, player) {
+      this.props.setCurrentPlayer(player);
+      this.props.history.push(`/player/${id}`);
+  }
 
 
   render() {
@@ -48,17 +55,16 @@ class TeamPage extends Component {
                     <div className='team-roster-wrapper'>
                         <div className='team-roster'>
                             {data.getTeam.roster.map((player) =>
-                                <Link to={`/player/${player.id}`}>
-                                  <Card
-                                    style={{ width: 300, margin: '16px 56px 16px 56px' }}
-                                    cover={<img alt="example" src={require('../images/lax_profile2.JPG')} />}
-                                  >
-                                    <Meta
-                                      avatar={<Avatar src="https://res-1.cloudinary.com/hireclub/image/upload/c_fill,f_auto,g_north,h_200,q_auto,w_200/nlpxwm4loty0zh77b7hn" />}
-                                      title={player.name}
-                                    />
-                                  </Card>
-                              </Link>
+                              <Card
+                                style={{ width: 300, margin: '16px 56px 16px 56px' }}
+                                cover={<img alt="example" src={require('../images/lax_profile2.JPG')} />}
+                                onClick={() => this.handlePlayerClick(player.id, player.name)}
+                              >
+                                <Meta
+                                  avatar={<Avatar src="https://res-1.cloudinary.com/hireclub/image/upload/c_fill,f_auto,g_north,h_200,q_auto,w_200/nlpxwm4loty0zh77b7hn" />}
+                                  title={player.name}
+                                />
+                              </Card>
                             )}
                         </div>
                     </div>

@@ -1,22 +1,9 @@
 import React, { Component } from 'react';
 import { Modal, Button, Spin, Skeleton } from 'antd';
-import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 
 import './PlayerPage.css';
-
-export const GET_PHOTO_BY_ID = gql`
-  query getPhotosById($ids: [ID!]!) {
-    getPhotosById(ids: $ids) {
-        id
-        image(spec: { height: 2000, width: 3000, watermark: true }) {
-          url
-          height
-          width
-        }
-    }
-  }
-`
+import { GET_PHOTO_BY_ID } from '../../queries/player';
 
 class PlayerPhotoViewer extends Component {
     constructor(props) {
@@ -24,7 +11,7 @@ class PlayerPhotoViewer extends Component {
     }
 
   render() {
-      const { visible, loading, showModal, handleAddToCart, handleCancel, photoId } = this.props;
+      const { visible, loading, showModal, handleCancel, photoId } = this.props;
     return (
         <div>
         <Query query={GET_PHOTO_BY_ID} variables={{ ids: [photoId] }}>
@@ -35,15 +22,18 @@ class PlayerPhotoViewer extends Component {
                 <Modal
                   visible={visible}
                   title="Title"
-                  onOk={handleAddToCart}
                   onCancel={handleCancel}
+                  width={"80vw"}
+                  centered={true}
                   footer={[
-                    <Button key="close" onClick={this.handleCancel}>Close</Button>,
-                    <Button key="submit" type="primary" loading={loading} onClick={handleAddToCart}>
-                      Submit
-                    </Button>,
+                    <Button key="close" onClick={handleCancel}>Close</Button>
                   ]}
                 >
+                <div className="spinner">
+                  <div className="bounce1"></div>
+                  <div className="bounce2"></div>
+                  <div className="bounce3"></div>
+                </div>
                 <div className='team-hero'><img src={data.getPhotosById[0].image.url} className='team-hero-image'/></div>
                 </Modal>
             )

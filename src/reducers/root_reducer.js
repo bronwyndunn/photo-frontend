@@ -1,7 +1,8 @@
-// const initialState = {};
+import { combineReducers } from 'redux';
 
-const rootReducer = () => {
-    return {test: "hi"}
-};
+import playerReducer from './player_reducer';
 
+const rootReducer = combineReducers({
+  playerState: playerReducer
+});
 export default rootReducer;

@@ -1,3 +1,20 @@
+.player-grid-wrapper {
+    margin: 24px;
+    font-family: 'Lato', sans-serif;
+}
+
+.player-grid-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.player-name {
+    font-size: 32px;
+    flex-grow: 1;
+}
+
 .player-wrapper {
     display: flex;
     flex-grow: row;
@@ -6,6 +23,74 @@
     margin-top: 60px;
 }
 
-.ant-skeleton {
-    margin-top: -500px;
+.ant-card-cover {
+    height: 298px;
+    width: 298px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.individual-player-photo img {
+    display: block;
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 100;
+
+    object-position: 50% 40%;
+
+}
+
+.cart-button {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+}
+
+.cart-button-text {
+    font-family: 'Lato', sans-serif;
+    margin-left: 8px;
+}
+
+.spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+.spinner > div {
+  width: 18px;
+  height: 18px;
+  background-color: #333;
+
+  border-radius: 100%;
+  display: inline-block;
+  -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+  animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+}
+
+.spinner .bounce1 {
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+
+.spinner .bounce2 {
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+}
+
+@-webkit-keyframes sk-bouncedelay {
+  0%, 80%, 100% { -webkit-transform: scale(0) }
+  40% { -webkit-transform: scale(1.0) }
+}
+
+@keyframes sk-bouncedelay {
+  0%, 80%, 100% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  } 40% {
+    -webkit-transform: scale(1.0);
+    transform: scale(1.0);
+  }
 }

@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import './PlayerPage.css';
-import { Card, Avatar, Skeleton } from 'antd';
+import { Query } from 'react-apollo';
+import { Card, Avatar, Skeleton, Icon, Button } from 'antd';
 import gql from 'graphql-tag';
 import { withApollo } from 'react-apollo';
 import { RIPTIDE_TEAM_ID } from '../../utils/constants'
-import { Query } from 'react-apollo';
+import CartButton from './CartButton';
 
+import './PlayerPage.css';
 import PlayerPhotoViewer from './PlayerPhotoViewer';
 
 const { Meta } = Card;
@@ -44,6 +45,7 @@ class PlayerPage extends Component {
     }
 
     handleAddToCart() {
+        this.props.addItemToCart();
         this.setState({ visible: false })
     }
 
@@ -51,13 +53,26 @@ class PlayerPage extends Component {
         this.setState({ visible: false })
     }
 
+  handleImageLoaded() {
+    this.setState({ imageStatus: "loaded" });
+  }
 
+  handleImageErrored() {
+    this.setState({ imageStatus: "failed to load" });
+  }
 
   render() {
+    const { playerState } = this.props;
     const { playerId } = this.props.match.params;
     const { visible, loading, currentPhotoId } = this.state;
     return (
-        <div>
+        <div className='player-grid-wrapper'>
+          <div className='player-grid-header'>
+            <h3 className='player-name'>{playerState.player}</h3>
+            <Icon type="shopping-cart" style={{ fontSize: '32px', transform: 'translateY(-6px)' }} theme="outlined" onClick={() => this.props.history.push('/checkout')}/>
+            <p>{playerState.cart}</p>
+
+          </div>
           <Query query={GET_PHOTOS_BY_PLAYER} variables={{ playerId: playerId}}>
             {({ loading, error, data }) => {
               if (loading) return "Loading...";
@@ -67,14 +82,10 @@ class PlayerPage extends Component {
                       <div>
                           <Card
                             style={{ width: 300, margin: '16px 56px 16px 56px' }}
-                            cover={<img alt="example" src={player.image.url} />}
-                            onClick={() => this.showModal(player.id)}
+                            cover={<img alt="example" src={player.image.url} onClick={() => this.showModal(player.id)} />}
+
                           >
-                           <Skeleton loading={player.image.url ? false : true} avatar active>
-                            <Meta
-                              title={"title"}
-                            />
-                            </Skeleton>
+                            <CartButton handleAddToCart={this.handleAddToCart}/>
                           </Card>
                       </div>
                     )}
@@ -83,7 +94,7 @@ class PlayerPage extends Component {
             }}
           </Query>
           <PlayerPhotoViewer visible={visible} loading={loading} showModal={this.showModal}
-          handleAddToCart={this.handleAddToCart} handleCancel={this.handleCancel} photoId={currentPhotoId}/>
+          handleCancel={this.handleCancel} photoId={currentPhotoId}/>
       </div>
     );
   }
