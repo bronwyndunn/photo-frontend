@@ -6,7 +6,7 @@ import './StripeProviderForm.css';
 class StripeProviderForm extends Component {
   render() {
     return (
-      <StripeProvider apiKey="pk_test_JhARL7UVX3wmJd15qcCQ3c2k000DzbQjON">
+      <StripeProvider apiKey="pk_live_sWJaTzrAYpYjBB08MgiZ9xSH00U4ESCqEP">
         <div className="stripe-form">
           <h1>Checkout</h1>
           <Elements>
