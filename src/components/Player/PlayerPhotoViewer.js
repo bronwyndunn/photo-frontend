@@ -4,6 +4,7 @@ import { Query } from 'react-apollo';
 
 import './PlayerPage.css';
 import { GET_PHOTO_BY_ID } from '../../queries/player';
+import LoadingIcon from '../LoadingIcon';
 
 class PlayerPhotoViewer extends Component {
     constructor(props) {
@@ -29,11 +30,7 @@ class PlayerPhotoViewer extends Component {
                     <Button key="close" onClick={handleCancel}>Close</Button>
                   ]}
                 >
-                <div className="spinner">
-                  <div className="bounce1"></div>
-                  <div className="bounce2"></div>
-                  <div className="bounce3"></div>
-                </div>
+                <LoadingIcon />
                 <div className='individual-player-photo'><img src={data.getPhotosById[0].image.url} className='team-hero-image'/></div>
                 </Modal>
             )

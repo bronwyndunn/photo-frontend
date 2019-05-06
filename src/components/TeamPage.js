@@ -10,6 +10,7 @@ import { withApollo } from 'react-apollo';
 import jsonwebtoken from 'jsonwebtoken';
 import { RIPTIDE_TEAM_ID } from '../utils/constants'
 import { GET_PHOTO_BY_ID } from '../queries/player';
+import LoadingIcon from './LoadingIcon';
 
 import { Query } from 'react-apollo';
 
@@ -25,6 +26,7 @@ export const GET_TEAM = gql`
         roster {
           id
           name
+          thumbnail
         }
     }
   }
@@ -48,7 +50,7 @@ class TeamPage extends Component {
         <div>
           <Query query={GET_TEAM} variables={{ teamId: RIPTIDE_TEAM_ID}}>
             {({ loading, error, data }) => {
-              if (loading) return "Loading...";
+              if (loading) return <LoadingIcon/>;
               return(
                   <div className='team-wrapper'>
                     <div className='team-hero'><img src={require("../images/riptide_team.JPG")} className='team-hero-image'/></div>
@@ -57,16 +59,24 @@ class TeamPage extends Component {
                     <div className='team-roster-wrapper'>
                         <div className='team-roster'>
                             {data.getTeam.roster.map((player) =>
-                              <Card
-                                style={{ width: 300, margin: '16px 56px 16px 56px' }}
-                                cover={<img alt="example" src={require('../images/lax_profile2.JPG')} />}
-                                onClick={() => this.handlePlayerClick(player.id, player.name)}
-                              >
-                                <Meta
-                                  avatar={<Avatar src="https://res-1.cloudinary.com/hireclub/image/upload/c_fill,f_auto,g_north,h_200,q_auto,w_200/nlpxwm4loty0zh77b7hn" />}
-                                  title={player.name}
-                                />
-                              </Card>
+                                <Query query={GET_PHOTO_BY_ID} variables={{ ids: [player.thumbnail] }}>
+                                    {({ loading, error, data }) => {
+                                        if (error) return <div>{JSON.stringify(data)}</div>
+                                        if (loading) return <LoadingIcon/>;
+                                        return(
+                                            <Card
+                                            style={{ width: 300, margin: '16px 56px 16px 56px' }}
+                                            cover={<img alt="example" src={data.getPhotosById[0].image.url} />}
+                                            onClick={() => this.handlePlayerClick(player.id, player.name)}
+                                            >
+                                            <Meta
+                                            avatar={<Avatar src="https://res-1.cloudinary.com/hireclub/image/upload/c_fill,f_auto,g_north,h_200,q_auto,w_200/nlpxwm4loty0zh77b7hn" />}
+                                            title={player.name}
+                                            />
+                                            </Card>
+                                    )
+                                    }}
+                                </Query>
                             )}
                         </div>
                     </div>
