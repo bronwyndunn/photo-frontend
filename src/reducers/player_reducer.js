@@ -1,4 +1,8 @@
-import { SET_PLAYER, ADD_ITEM_TO_CART } from '../actions/player';
+import { SET_PLAYER, ADD_ITEM_TO_CART, REMOVE_ITEM_TO_CART, CLEAR_CART } from '../actions/player';
+
+import { reject, eq } from 'ramda'
+
+const removeItem = (array, item) => array.filter(photo => photo !== item)
 
 const initialState = {
   player: "",
@@ -7,7 +11,6 @@ const initialState = {
 };
 
 const playerReducer = (state = initialState, action) => {
-    console.log(state);
   switch (action.type) {
       case SET_PLAYER:
         return Object.assign({}, state, {
@@ -15,11 +18,23 @@ const playerReducer = (state = initialState, action) => {
             cartPhotoIds: state.cartPhotoIds
         })
       case ADD_ITEM_TO_CART:
-      console.log(action);
         return {
             ...state,
             amount: state.amount + 1,
             cartPhotoIds: [...state.cartPhotoIds, action.photoId]
+        }
+      case REMOVE_ITEM_TO_CART:
+        const newCartIds = removeItem(state.cartPhotoIds, action.photoId)
+        return {
+            ...state,
+            amount: state.amount - 1,
+            cartPhotoIds: newCartIds
+        }
+      case CLEAR_CART:
+        return {
+            ...state,
+            amount: 0,
+            cartPhotoIds: []
         }
       default:
         return state;

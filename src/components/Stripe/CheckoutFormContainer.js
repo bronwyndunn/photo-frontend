@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import { clearCart } from '../../actions/player';
+
+
 import StripeProviderForm from './StripeProviderForm';
 
 class CheckoutFormContainer extends Component {
@@ -22,4 +25,8 @@ const mapStateToProps = (state) => ({
     ...state
 });
 
-export default connect(mapStateToProps)(StripeProviderForm);
+const mapDispatchToProps = dispatch => ({
+    clearCart: () => dispatch(clearCart()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(StripeProviderForm);

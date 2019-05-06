@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { setCurrentPlayer, addItemToCart } from '../../actions/player';
+import { setCurrentPlayer, addItemToCart, removeItemFromCart } from '../../actions/player';
 
 import PlayerPage from './PlayerPage';
 
@@ -26,6 +26,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = dispatch => ({
     setCurrentPlayer: (player) => dispatch(setCurrentPlayer(player)),
-    addItemToCart: (playerId) => dispatch(addItemToCart(playerId))
+    addItemToCart: (playerId) => dispatch(addItemToCart(playerId)),
+    removeItemFromCart: (playerId) => dispatch(removeItemFromCart(playerId))
 });
 export default connect(mapStateToProps, mapDispatchToProps)(PlayerPage);

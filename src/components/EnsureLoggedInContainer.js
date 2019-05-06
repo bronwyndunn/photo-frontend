@@ -24,14 +24,12 @@ class EnsureLoggedInContainer extends React.Component {
           this.props.history.push('/');
       }
     if (!isLoggedIn) {
-        console.log("prop history");
       this.props.history.push('/');
     }
   }
 
   render() {
       const { isLoggedIn } = this.state;
-      console.log(this.state);
     if (isLoggedIn) {
       return this.props.children
     } else {

@@ -9,6 +9,8 @@ import gql from 'graphql-tag';
 import { withApollo } from 'react-apollo';
 import jsonwebtoken from 'jsonwebtoken';
 import { RIPTIDE_TEAM_ID } from '../utils/constants'
+import { GET_PHOTO_BY_ID } from '../queries/player';
+
 import { Query } from 'react-apollo';
 
 const { Meta } = Card;

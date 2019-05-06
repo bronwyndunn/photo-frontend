@@ -9,20 +9,27 @@ class CartButton extends Component {
             added: false
         }
 
-    this.handleOnClick = this.handleOnClick.bind(this);
+    this.handleAddClick = this.handleAddClick.bind(this);
     }
 
-    handleOnClick() {
+    handleAddClick() {
         const { handleAddToCart } = this.props;
         this.setState({ added: true })
         this.props.handleAddToCart();
+    }
+
+    handleRemoveClick() {
+        const { handleRemoveFromCart } = this.props;
+        this.setState({ added: false })
+        this.props.handleRemoveFromCart();
     }
 
     render() {
         const buttonText = this.state.added ? "Added!" : "Click to add to cart";
         return (
             <div className='cart-button'>
-                <Button disabled={this.state.added} type="primary" shape="circle" icon={this.state.added ? "check" : "plus"} onClick={() => this.handleOnClick()}/>
+                <Button className="cart-button-icon" disabled={!this.state.added} size="small" type="primary" shape="circle" icon={"minus"} onClick={() => this.handleRemoveClick()}/>
+                <Button className="cart-button-icon" disabled={this.state.added} size="small" type="primary" shape="circle" icon={this.state.added ? "check" : "plus"} onClick={() => this.handleAddClick()}/>
                 <h4 className='cart-button-text'>{buttonText}</h4>
             </div>
         );

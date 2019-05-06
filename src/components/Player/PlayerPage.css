@@ -1,6 +1,6 @@
 .player-grid-wrapper {
     margin: 24px;
-    font-family: 'Lato', sans-serif;
+    font-family: 'Source Sans Pro', sans-serif;
 }
 
 .player-grid-header {
@@ -52,8 +52,12 @@
     align-items: baseline;
 }
 
+.cart-button-icon {
+    margin-right: 8px;
+}
+
 .cart-button-text {
-    font-family: 'Lato', sans-serif;
+    font-family: 'Source Sans Pro', sans-serif;
     margin-left: 8px;
 }
 

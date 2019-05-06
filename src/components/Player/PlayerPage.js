@@ -37,6 +37,7 @@ class PlayerPage extends Component {
 
         this.showModal = this.showModal.bind(this);
         this.handleAddToCart = this.handleAddToCart.bind(this);
+        this.handleRemoveFromCart = this.handleRemoveFromCart.bind(this);
         this.handleCancel = this.handleCancel.bind(this);
     }
 
@@ -45,9 +46,12 @@ class PlayerPage extends Component {
     }
 
     handleAddToCart(photoId) {
-        console.log(photoId);
         this.props.addItemToCart(photoId);
         this.setState({ visible: false })
+    }
+
+    handleRemoveFromCart(photoId) {
+        this.props.removeItemFromCart(photoId);
     }
 
     handleCancel() {
@@ -86,7 +90,7 @@ class PlayerPage extends Component {
                             cover={<img alt="example" src={player.image.url} onClick={() => this.showModal(player.id)} />}
 
                           >
-                            <CartButton handleAddToCart={() => this.handleAddToCart(player.id)}/>
+                            <CartButton handleAddToCart={() => this.handleAddToCart(player.id)} handleRemoveFromCart={() => this.handleRemoveFromCart(player.id)}/>
                           </Card>
                       </div>
                     )}

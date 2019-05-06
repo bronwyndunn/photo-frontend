@@ -18,7 +18,6 @@ export const GET_TEAMS = gql`
 
 class PhotoGrid extends Component {
   render() {
-      console.log(this.props);
     return (
         <div>
         <h1>Photo grid</h1>

@@ -16,6 +16,7 @@ class CheckoutForm extends Component {
     this.state = {complete: false};
 
     this.submit = this.submit.bind(this);
+    this.handleSuccess = this.handleSuccess.bind(this);
   }
 
     async submit() {
@@ -23,6 +24,11 @@ class CheckoutForm extends Component {
           const { token } = await this.props.stripe.createToken({name: "Name"});
           return token.id;
       } catch(er) {return er}
+    }
+
+    handleSuccess() {
+        this.setState({complete: true});
+        this.props.props.clearCart();
     }
 
   render() {
@@ -45,8 +51,7 @@ class CheckoutForm extends Component {
                   mutation: VERIFY_CHARGE,
                   variables: { input: {email: email, amount: amount, photoIds: photoIds, token: await this.submit()} }
                 })
-                console.log(data);
-                if (data.purchase === "success") this.setState({complete: true});
+                if (data.purchase === "success") this.handleSuccess();
               }}
             >
               Complete Purchase

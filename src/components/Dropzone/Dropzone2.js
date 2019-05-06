@@ -53,8 +53,6 @@ class Dropzone extends Component {
       array.push(list.item(i))
     }
 
-    console.log('array: ', array)
-
     return array
   }
 
@@ -76,8 +74,6 @@ class Dropzone extends Component {
     if (this.props.disabled) return
 
     const files = event.dataTransfer.files
-
-    console.log('files: ', files)
 
     if (this.props.onFilesAdded) {
       const array = this.fileListToArray(files)
