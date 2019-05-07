@@ -88,7 +88,6 @@ class PlayerPage extends Component {
                           <Card
                             style={{ width: 300, margin: '16px 56px 16px 56px' }}
                             cover={<img alt="example" src={player.image.url} onClick={() => this.showModal(player.id)} />}
-
                           >
                             <CartButton handleAddToCart={() => this.handleAddToCart(player.id)} handleRemoveFromCart={() => this.handleRemoveFromCart(player.id)}/>
                           </Card>
