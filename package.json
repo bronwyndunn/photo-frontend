@@ -1,6 +1,6 @@
 {
   "name": "photo-frontend",
-  "version": "0.4.7",
+  "version": "0.5.0",
   "private": true,
   "dependencies": {
     "antd": "^3.16.1",
