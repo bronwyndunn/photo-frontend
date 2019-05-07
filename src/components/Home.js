@@ -33,8 +33,8 @@ class Home extends Component {
         ModalText: 'Enter your email and you team\'s coupon code to view team photos' ,
         visible: false,
         confirmLoading: false,
-        email: "",
-        coupon: ""
+        email: '',
+        coupon: ''
     }
 
     this.showModal = this.showModal.bind(this);
@@ -70,16 +70,16 @@ class Home extends Component {
       confirmLoading: true,
     });
     this.loginUser().then((res) => {
-        const { email } = jsonwebtoken.decode(res.data.login);
-        const token = res.data.login;
-        localStorage.setItem("token", token);
+        const { email } = jsonwebtoken.decode(res.data.login)
+        const token = res.data.login
+        localStorage.setItem('token', token)
         this.setState({
             visible: false,
             confirmLoading: false,
-        });
-        this.props.history.push('/teams');
+        })
+        this.props.history.push('/teams')
     })
-    .catch((er) => {
+    .catch((err) => {
         this.setState({
             ModalText: 'There was an error logging in. Incorrect coupon code.',
             confirmLoading: false
