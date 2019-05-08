@@ -13,15 +13,13 @@ class CartButton extends Component {
     }
 
     handleAddClick() {
-        const { handleAddToCart } = this.props;
         this.setState({ added: true })
-        this.props.handleAddToCart();
+        this.props.handleAddToCart()
     }
 
     handleRemoveClick() {
-        const { handleRemoveFromCart } = this.props;
         this.setState({ added: false })
-        this.props.handleRemoveFromCart();
+        this.props.handleRemoveFromCart()
     }
 
     render() {

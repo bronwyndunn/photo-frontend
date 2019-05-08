@@ -9,9 +9,6 @@ import CartButton from './CartButton';
 import './PlayerPage.css';
 import PlayerPhotoViewer from './PlayerPhotoViewer';
 
-const { Meta } = Card;
-
-
 export const GET_PHOTOS_BY_PLAYER = gql`
   query getPhotosByPlayer($playerId: ID!) {
     getPhotosByPlayer(playerId: $playerId) {

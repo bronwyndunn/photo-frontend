@@ -11,7 +11,7 @@ export const GET_PHOTO_BY_ID = gql`
   query getPhotosById($ids: [ID!]!) {
     getPhotosById(ids: $ids) {
         id
-        image(spec: { height: 3000, width: 3000, watermark: true }) {
+        image(spec: { height: 1200, width: 1200, watermark: true }) {
           url
           height
           width

@@ -4,7 +4,7 @@ export const GET_PHOTOS_BY_PLAYER = gql`
   query getPhotosByPlayer($playerId: ID!) {
     getPhotosByPlayer(playerId: $playerId) {
         id
-        image(spec: { height: 3000, width: 3000, watermark: true }) {
+        image(spec: { height: 300, width: 300, watermark: true }) {
           url
           height
           width
