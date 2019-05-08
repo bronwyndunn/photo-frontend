@@ -107,7 +107,7 @@ class Home extends Component {
                     left: '50%',
                     transform: 'translate(-50%, -50%)',
                 }}>
-                Find your team
+            Find your team
         </Button>
         <Modal
           title="Sign in"

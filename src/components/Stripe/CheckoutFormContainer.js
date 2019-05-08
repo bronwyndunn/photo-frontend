@@ -1,21 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { clearCart } from '../../actions/player';
+import StripeProviderForm from './StripeProviderForm'
+import Cart from './Cart'
+import { clearCart } from '../../actions/player'
 
-
-import StripeProviderForm from './StripeProviderForm';
 
 class CheckoutFormContainer extends Component {
     constructor(props) {
-        super(props);
+        super(props)
     }
 
 
   render() {
     return (
-        <div>
-            <StripeProviderForm />
+      <div>
+        <StripeProviderForm />
       </div>
     );
   }
@@ -23,10 +23,13 @@ class CheckoutFormContainer extends Component {
 
 const mapStateToProps = (state) => ({
     ...state
-});
+})
 
 const mapDispatchToProps = dispatch => ({
-    clearCart: () => dispatch(clearCart()),
-});
+  clearCart: () => dispatch(clearCart())
+})
 
-export default connect(mapStateToProps, mapDispatchToProps)(StripeProviderForm);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(StripeProviderForm)
