@@ -1,10 +1,22 @@
-import { GET_PHOTO_BY_ID } from '../../queries/player'
 import './Cart.css'
 
+import gql from 'graphql-tag'
 import React, { Component } from 'react'
 import { Query } from 'react-apollo'
 import { Card } from 'antd'
 
+export const GET_PHOTO_BY_ID = gql`
+  query getPhotosById($ids: [ID!]!) {
+    getPhotosById(ids: $ids) {
+        id
+        image(spec: { height: 3000, width: 3000, watermark: true }) {
+          url
+          height
+          width
+        }
+    }
+  }
+`
 
 class Cart extends Component {
   constructor(props) {
