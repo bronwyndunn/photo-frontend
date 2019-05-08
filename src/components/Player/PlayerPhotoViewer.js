@@ -1,10 +1,32 @@
 import React, { Component } from 'react';
-import { Modal, Button, Spin, Skeleton } from 'antd';
+import { Modal, Button, Spin, Skeleton, Icon } from 'antd';
 import { Query } from 'react-apollo';
+import gql from 'graphql-tag';
+
 
 import './PlayerPage.css';
-import { GET_PHOTO_BY_ID } from '../../queries/player';
 import LoadingIcon from '../LoadingIcon';
+
+export const GET_PHOTO_BY_ID = gql`
+  query getPhotosById($ids: [ID!]!) {
+    getPhotosById(ids: $ids) {
+        id
+        image(spec: { height: 3000, width: 3000, watermark: true }) {
+          url
+          height
+          width
+        }
+    }
+  }
+`
+
+const modalCloseIconStyle = {
+    position: 'fixed',
+    color: '#fff',
+    fontSize: '30px',
+    top: '20px',
+    right: '40px'
+}
 
 class PlayerPhotoViewer extends Component {
     constructor(props) {
@@ -20,19 +42,11 @@ class PlayerPhotoViewer extends Component {
                 if (error) return <div></div>
                 if (loading) return "Loading...";
                 return(
-                <Modal
-                  visible={visible}
-                  title="Title"
-                  onCancel={handleCancel}
-                  width={"80vw"}
-                  centered={true}
-                  footer={[
-                    <Button key="close" onClick={handleCancel}>Close</Button>
-                  ]}
-                >
-                <LoadingIcon />
-                <div className='individual-player-photo'><img src={data.getPhotosById[0].image.url} className='team-hero-image'/></div>
-                </Modal>
+                <div className={visible ? 'modal-wrapper' : 'modal-wrapper-closed'}>
+                    <Icon type='close' className='modal-close' style={modalCloseIconStyle} onClick={handleCancel}/>
+                    <LoadingIcon />
+                    <div onClick={() => showModal(data.getPhotosById.id)} className='individual-player-photo'><img src={data.getPhotosById[0].image.url} className='team-hero-image'/></div>
+                </div>
             )
             }}
         </Query>

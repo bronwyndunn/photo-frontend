@@ -9,7 +9,7 @@ import gql from 'graphql-tag';
 import { withApollo } from 'react-apollo';
 import jsonwebtoken from 'jsonwebtoken';
 import { RIPTIDE_TEAM_ID } from '../utils/constants'
-import { GET_PHOTO_BY_ID } from '../queries/player';
+// import { GET_PHOTO_BY_ID } from '../queries/player';
 import LoadingIcon from './LoadingIcon';
 
 import { Query } from 'react-apollo';
@@ -31,6 +31,20 @@ export const GET_TEAM = gql`
     }
   }
 `
+
+export const GET_PHOTO_BY_ID = gql`
+  query getPhotosById($ids: [ID!]!) {
+    getPhotosById(ids: $ids) {
+        id
+        image(spec: { height: 300, width: 300, watermark: true }) {
+          url
+          height
+          width
+        }
+    }
+  }
+`
+
 
 class TeamPage extends Component {
     constructor(props) {
@@ -65,8 +79,10 @@ class TeamPage extends Component {
                                         if (loading) return <LoadingIcon/>;
                                         return(
                                             <Card
-                                            style={{ width: 300, margin: '16px 56px 16px 56px' }}
+                                            style={{ width: 300, margin: '16px 56px 16px 56px', boxShadow: '0 0.46875rem 2.1875rem rgba(90,97,105,.1), 0 0.9375rem 1.40625rem rgba(90,97,105,.1), 0 0.25rem 0.53125rem rgba(90,97,105,.12), 0 0.125rem 0.1875rem rgba(90,97,105,.1)' }}
                                             cover={<img alt="example" src={data.getPhotosById[0].image.url} />}
+                                            title={' '}
+                                            hoverable={true}
                                             onClick={() => this.handlePlayerClick(player.id, player.name)}
                                             >
                                             <Meta
