@@ -20,6 +20,11 @@
         padding: 0 5px;
     }
 
+    /* .stripe-form {
+      display: flex;
+      justify-content: center;
+    } */
+
     .stripe-button {
         white-space: nowrap;
         border: 0;

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import StripeProviderForm from './StripeProviderForm'
 import Cart from './Cart'
-import { clearCart } from '../../actions/player'
+import { clearCart, removeItemFromCart } from '../../actions/player'
 
 
 class CheckoutFormContainer extends Component {
@@ -26,7 +26,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  clearCart: () => dispatch(clearCart())
+  clearCart: () => dispatch(clearCart()),
+  removeItemFromCart: (photoId) => dispatch(removeItemFromCart(photoId))
 })
 
 export default connect(
