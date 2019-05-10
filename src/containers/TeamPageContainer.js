@@ -29,4 +29,7 @@ const mapDispatchToProps = dispatch => ({
   addItemToCart: () => dispatch(addItemToCart())
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(TeamPage)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(TeamPage)

@@ -40,6 +40,7 @@ class Cart extends Component {
   render() {
     const { props } = this.props
     const ids = props.playerState.cartPhotoIds
+    // if (ids === []) return
 
     return (
         <div className='cart-wrapper'>

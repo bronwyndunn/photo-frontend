@@ -5,7 +5,7 @@ import { reject, eq } from 'ramda'
 const removeItem = (array, item) => array.filter(photo => photo !== item)
 
 const initialState = {
-  player: "",
+  player: '',
   amount: 0,
   cartPhotoIds: []
 };
