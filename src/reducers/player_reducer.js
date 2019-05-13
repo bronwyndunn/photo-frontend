@@ -1,11 +1,11 @@
-import { SET_PLAYER, ADD_ITEM_TO_CART, REMOVE_ITEM_TO_CART, CLEAR_CART } from '../actions/player';
+import { SET_PLAYER, ADD_ITEM_TO_CART, REMOVE_ITEM_FROM_CART, CLEAR_CART } from '../actions/player';
 
-import { reject, eq } from 'ramda'
-
-const removeItem = (array, item) => array.filter(photo => photo !== item)
+const removeItem = (photoIds, removeId) => (
+  photoIds.filter(photoId => photoId !== removeId)
+)
 
 const initialState = {
-  player: "",
+  player: '',
   amount: 0,
   cartPhotoIds: []
 };
@@ -23,7 +23,7 @@ const playerReducer = (state = initialState, action) => {
             amount: state.amount + 1,
             cartPhotoIds: [...state.cartPhotoIds, action.photoId]
         }
-      case REMOVE_ITEM_TO_CART:
+      case REMOVE_ITEM_FROM_CART:
         const newCartIds = removeItem(state.cartPhotoIds, action.photoId)
         return {
             ...state,

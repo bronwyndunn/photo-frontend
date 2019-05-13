@@ -24,11 +24,11 @@ class Cart extends Component {
   constructor(props) {
     super(props)
 
-    this.handleRemoveFromCart = this.handleRemoveFromCart.bind(this);
+    this.handleRemoveFromCart = this.handleRemoveFromCart.bind(this)
   }
 
   handleRemoveFromCart(photoId) {
-    this.props.removeItemFromCart(photoId);
+    this.props.props.removeItemFromCart(photoId)
   }
 
   handleImageLoaded() {
@@ -41,10 +41,7 @@ class Cart extends Component {
 
   render() {
     const { props } = this.props
-    console.log('propssss: ', props)
-    
     const ids = props.playerState.cartPhotoIds
-    const { removeItemFromCart } = props
 
     if (isNil(ids) || isEmpty(ids)) return (
       <div className='cart-wrapper'>
@@ -54,8 +51,6 @@ class Cart extends Component {
       </div>
     )
 
-    console.log('remove from cart: ', removeItemFromCart);
-
     return (
         <div className='cart-wrapper'>
           <Query query={GET_PHOTO_BY_ID} variables={{ ids }}>
@@ -63,8 +58,7 @@ class Cart extends Component {
               ({ loading, error, data }) => {
                 if (error) return <div>{console.log('error', error)}</div>
                 // if (error) return <div>{JSON.stringify(data)}</div>
-                if (loading) return "Loading..."
-
+                if (loading) return 'Loading...'
 
                 return (
                   <div className='cart-items-wrapper'>
@@ -77,7 +71,12 @@ class Cart extends Component {
                               cover={<img alt="example" src={photo.image.url} />}
                               bodyStyle={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}
                             >
-                            <Button type='danger' htmlType='submit' onClick={() => removeItemFromCart(photo.id) }>Remove from cart</Button>
+                              <Button
+                                type='danger'
+                                htmlType='submit'
+                                onClick={ () => this.handleRemoveFromCart(photo.id) }>
+                                Remove from cart
+                              </Button>
                             </Card>
                           </div>
                         )

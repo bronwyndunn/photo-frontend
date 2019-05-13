@@ -10,9 +10,6 @@ class OranizationContainer extends Component {
     this.state = {
       hello: '1'
     }
-    console.log(props)
-
-
   }
 
 

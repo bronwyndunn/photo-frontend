@@ -1,16 +1,10 @@
-import React, {Component} from 'react';
-import {Elements, StripeProvider} from 'react-stripe-elements';
-import CheckoutForm from './CheckoutForm';
+import React, { Component } from 'react'
+import { Elements, StripeProvider } from 'react-stripe-elements'
+import CheckoutForm from './CheckoutForm'
 import Cart from './Cart'
-import './StripeProviderForm.css';
+import './StripeProviderForm.css'
 
 class StripeProviderForm extends Component {
-  constructor(props) {
-    super(props)
-
-    console.log('props: ', props)
-  }
-
   render() {
     return (
       <div>
@@ -24,8 +18,8 @@ class StripeProviderForm extends Component {
         </StripeProvider>
         <Cart props={ this.props } />
       </div>
-    );
+    )
   }
 }
 
-export default StripeProviderForm;
+export default StripeProviderForm

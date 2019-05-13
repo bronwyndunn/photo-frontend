@@ -7,11 +7,6 @@ import { clearCart, removeItemFromCart } from '../../actions/player'
 
 
 class CheckoutFormContainer extends Component {
-    constructor(props) {
-        super(props)
-    }
-
-
   render() {
     return (
       <div>
@@ -26,7 +21,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  removeItemFromCart: () => dispatch(removeItemFromCart()),
+  removeItemFromCart: photoId => dispatch(removeItemFromCart(photoId)),
   clearCart: () => dispatch(clearCart())
 })
 
