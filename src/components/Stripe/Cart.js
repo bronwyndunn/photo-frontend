@@ -1,9 +1,11 @@
+import { isNil, isEmpty } from 'ramda'
+
 import './Cart.css'
 
 import gql from 'graphql-tag'
 import React, { Component } from 'react'
 import { Query } from 'react-apollo'
-import { Card } from 'antd'
+import { Card, Button } from 'antd'
 
 export const GET_PHOTO_BY_ID = gql`
   query getPhotosById($ids: [ID!]!) {
@@ -26,7 +28,7 @@ class Cart extends Component {
   }
 
   handleRemoveFromCart(photoId) {
-      this.props.removeItemFromCart(photoId);
+    this.props.removeItemFromCart(photoId);
   }
 
   handleImageLoaded() {
@@ -39,25 +41,45 @@ class Cart extends Component {
 
   render() {
     const { props } = this.props
+    console.log('propssss: ', props)
+    
     const ids = props.playerState.cartPhotoIds
+    const { removeItemFromCart } = props
+
+    if (isNil(ids) || isEmpty(ids)) return (
+      <div className='cart-wrapper'>
+          <br />
+          <br />
+          <h3>Cart is empty</h3>
+      </div>
+    )
+
+    console.log('remove from cart: ', removeItemFromCart);
 
     return (
         <div className='cart-wrapper'>
           <Query query={GET_PHOTO_BY_ID} variables={{ ids }}>
             {
               ({ loading, error, data }) => {
-                if (error) return <div>{JSON.stringify(data)}</div>
+                if (error) return <div>{console.log('error', error)}</div>
+                // if (error) return <div>{JSON.stringify(data)}</div>
                 if (loading) return "Loading..."
+
 
                 return (
                   <div className='cart-items-wrapper'>
                     {
                       data.getPhotosById.map(photo => {
                         return (
-                          <Card
-                            style={{ width: 300, margin: '16px 30px 16px 30px' }}
-                            cover={<img alt="example" src={photo.image.url} />}
-                          />
+                          <div>
+                            <Card
+                              style={{ width: 300, margin: '16px 30px 16px 30px' }}
+                              cover={<img alt="example" src={photo.image.url} />}
+                              bodyStyle={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}
+                            >
+                            <Button type='danger' htmlType='submit' onClick={() => removeItemFromCart(photo.id) }>Remove from cart</Button>
+                            </Card>
+                          </div>
                         )
                       })
                     }

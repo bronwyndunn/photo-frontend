@@ -29,4 +29,8 @@ const mapDispatchToProps = dispatch => ({
     addItemToCart: (playerId) => dispatch(addItemToCart(playerId)),
     removeItemFromCart: (playerId) => dispatch(removeItemFromCart(playerId))
 });
-export default connect(mapStateToProps, mapDispatchToProps)(PlayerPage);
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(PlayerPage);

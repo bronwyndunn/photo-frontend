@@ -4,14 +4,7 @@ import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Home from './components/Home';
-import PhotoGrid from './components/PhotoGrid';
-import TeamPageContainer from './containers/TeamPageContainer';
-import PlayerPageContainer from './components/Player/PlayerPageContainer';
-import CheckoutFormContainer from './components/Stripe/CheckoutFormContainer';
-import Uploader from './components/Dropzone/Uploader'
-// import { Uploader } from './components/Uploader'
-import {Elements, StripeProvider} from 'react-stripe-elements';
+import Root from './Root';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
 // think about using apolo-client instead of apollo-boost
@@ -19,9 +12,6 @@ import { ApolloClient } from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
 import { createUploadLink } from 'apollo-upload-client'
 import { InMemoryCache } from 'apollo-cache-inmemory'
-import { BrowserRouter as Router } from 'react-router-dom';
-import { Switch, Route } from 'react-router';
-import EnsureLoggedInContainer from './components/EnsureLoggedInContainer';
 
 import { loadState, saveState } from './localStorage';
 
@@ -46,8 +36,8 @@ const createApolloClient = (cache = {}) =>
     ssrMode: typeof window !== 'undefined',
     cache: new InMemoryCache().restore(cache),
     link: createUploadLink({
-      // uri: 'http://localhost:9000/graphql'
-      uri: 'https://backend.burst.gallery/graphql'
+      uri: 'http://localhost:9000/graphql'
+      // uri: 'https://backend.burst.gallery/graphql'
     })
   })
 
@@ -56,18 +46,7 @@ const client = createApolloClient()
 ReactDOM.render(
     <ApolloProvider store={ store } client={ client }>
         <Provider store={store}>
-            <Router>
-                <Switch>
-                    <Route exact path='/' component={Home}/>
-                    <Route path='/admin' component={ Uploader }/>
-                    <EnsureLoggedInContainer>
-                        <Route path='/photos' component={ PhotoGrid }/>
-                        <Route path='/teams' component={ TeamPageContainer }/>
-                        <Route path='/player/:playerId' component={ PlayerPageContainer }/>
-                        <Route path='/checkout' component={ CheckoutFormContainer }/>
-                    </EnsureLoggedInContainer>
-                </Switch>
-            </Router>
+            <Root />
         </Provider>
     </ApolloProvider>,
     document.getElementById('root'))

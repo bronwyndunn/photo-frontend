@@ -5,6 +5,12 @@ import Cart from './Cart'
 import './StripeProviderForm.css';
 
 class StripeProviderForm extends Component {
+  constructor(props) {
+    super(props)
+
+    console.log('props: ', props)
+  }
+
   render() {
     return (
       <div>

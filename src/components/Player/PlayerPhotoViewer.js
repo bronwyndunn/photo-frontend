@@ -45,7 +45,9 @@ class PlayerPhotoViewer extends Component {
                 <div className={visible ? 'modal-wrapper' : 'modal-wrapper-closed'}>
                     <Icon type='close' className='modal-close' style={modalCloseIconStyle} onClick={handleCancel}/>
                     <LoadingIcon />
-                    <div onClick={() => showModal(data.getPhotosById.id)} className='individual-player-photo'><img src={data.getPhotosById[0].image.url} className='team-hero-image'/></div>
+                    <div onClick={() => showModal(data.getPhotosById.id)} className='individual-player-photo'>
+                      <img src={data.getPhotosById[0].image.url} className='team-hero-image'/>
+                    </div>
                 </div>
             )
             }}
