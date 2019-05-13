@@ -6,6 +6,11 @@ import { connect } from 'react-redux'
 class OranizationContainer extends Component {
   constructor(props) {
     super(props)
+
+    this.state = {
+      hello: '1'
+    }
+    console.log(props)
   }
 
 
