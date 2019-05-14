@@ -26,13 +26,18 @@ class PlayerPage extends Component {
   constructor (props) {
     super(props)
 
-    this.state = {
-      loading: false,
-      visible: false,
-      currentPhotoId: ''
+        this.state = {
+          loading: false,
+          visible: false,
+          currentPhotoId: ''
+        }
+
+        this.showModal = this.showModal.bind(this)
+        this.handleAddToCart = this.handleAddToCart.bind(this)
+        this.handleRemoveFromCart = this.handleRemoveFromCart.bind(this)
+        this.handleCancel = this.handleCancel.bind(this)
     }
 
-<<<<<<< HEAD
     componentDidMount() {
         window.scrollTo(0,0)
     }
@@ -45,13 +50,7 @@ class PlayerPage extends Component {
         this.props.addItemToCart(photoId);
         this.setState({ visible: false })
     }
-=======
-    this.showModal = this.showModal.bind(this)
-    this.handleAddToCart = this.handleAddToCart.bind(this)
-    this.handleRemoveFromCart = this.handleRemoveFromCart.bind(this)
-    this.handleCancel = this.handleCancel.bind(this)
-  }
->>>>>>> f641173576371a0906d7c3b8adaf8b3ae036e89c
+
 
   showModal (photoId) {
     this.setState({ visible: true, currentPhotoId: photoId })
