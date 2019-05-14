@@ -65,9 +65,11 @@ class TeamPage extends Component {
                                         if (loading) return <LoadingIcon/>;
                                         return(
                                             <Card
-                                            style={{ width: 300, margin: '16px 56px 16px 56px' }}
-                                            cover={<img alt="example" src={data.getPhotosById[0].image.url} />}
-                                            onClick={() => this.handlePlayerClick(player.id, player.name)}
+                                              style={{ width: 300, margin: '16px 56px 16px 56px' }}
+                                              cover={<img alt="example" src={data.getPhotosById[0].image.url} />}
+                                              title={' '}
+                                              hoverable={true}
+                                              onClick={() => this.handlePlayerClick(player.id, player.name)}
                                             >
                                             <Meta
                                             avatar={<Avatar src="https://res-1.cloudinary.com/hireclub/image/upload/c_fill,f_auto,g_north,h_200,q_auto,w_200/nlpxwm4loty0zh77b7hn" />}
