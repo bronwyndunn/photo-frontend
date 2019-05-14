@@ -65,7 +65,7 @@ class Cart extends Component {
                     {
                       data.getPhotosById.map(photo => {
                         return (
-                          <div>
+                          <div key={ photo.id }>
                             <Card
                               style={{ width: 300, margin: '16px 30px 16px 30px' }}
                               cover={<img alt="example" src={photo.image.url} />}
