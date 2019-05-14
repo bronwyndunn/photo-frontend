@@ -48,8 +48,8 @@
   "eslintConfig": {
     "extends": "react-app"
   },
-  "xproxy": "https://backend.burst.gallery/graphql",
-  "proxy": "http://localhost:9000/graphql",
+  "proxy": "https://backend.burst.gallery/graphql",
+  "xproxy": "http://localhost:9000/graphql",
   "browserslist": [
     ">0.2%",
     "not dead",
