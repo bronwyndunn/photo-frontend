@@ -1,32 +1,30 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
-import { clearCart } from '../../actions/player';
-
-
-import StripeProviderForm from './StripeProviderForm';
+import StripeProviderForm from './StripeProviderForm'
+import Cart from './Cart'
+import { clearCart, removeItemFromCart } from '../../actions/player'
 
 class CheckoutFormContainer extends Component {
-    constructor(props) {
-        super(props);
-    }
-
-
-  render() {
+  render () {
     return (
-        <div>
-            <StripeProviderForm />
+      <div>
+        <StripeProviderForm />
       </div>
-    );
+    )
   }
 }
 
 const mapStateToProps = (state) => ({
-    ...state
-});
+  ...state
+})
 
 const mapDispatchToProps = dispatch => ({
-    clearCart: () => dispatch(clearCart()),
-});
+  removeItemFromCart: photoId => dispatch(removeItemFromCart(photoId)),
+  clearCart: () => dispatch(clearCart())
+})
 
-export default connect(mapStateToProps, mapDispatchToProps)(StripeProviderForm);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(StripeProviderForm)

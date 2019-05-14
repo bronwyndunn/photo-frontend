@@ -1,31 +1,22 @@
-import React from 'react';
-import rootReducer from './reducers/root_reducer';
-import { createStore, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
-import ReactDOM from 'react-dom';
-import './index.css';
-import Home from './components/Home';
-import PhotoGrid from './components/PhotoGrid';
-import TeamPageContainer from './containers/TeamPageContainer';
-import PlayerPageContainer from './components/Player/PlayerPageContainer';
-import CheckoutFormContainer from './components/Stripe/CheckoutFormContainer';
-import Uploader from './components/Dropzone/Uploader'
-// import { Uploader } from './components/Uploader'
-import {Elements, StripeProvider} from 'react-stripe-elements';
-import * as serviceWorker from './serviceWorker';
-import { Provider } from 'react-redux';
+import NavBar from './components/NavBar'
+import React from 'react'
+import rootReducer from './reducers/root_reducer'
+import { createStore, applyMiddleware } from 'redux'
+import thunk from 'redux-thunk'
+import ReactDOM from 'react-dom'
+import './index.css'
+import Root from './Root'
+import * as serviceWorker from './serviceWorker'
+import { Provider } from 'react-redux'
 // think about using apolo-client instead of apollo-boost
-import { ApolloClient } from 'apollo-boost';
-import { ApolloProvider } from 'react-apollo';
+import { ApolloClient } from 'apollo-boost'
+import { ApolloProvider } from 'react-apollo'
 import { createUploadLink } from 'apollo-upload-client'
 import { InMemoryCache } from 'apollo-cache-inmemory'
-import { BrowserRouter as Router } from 'react-router-dom';
-import { Switch, Route } from 'react-router';
-import EnsureLoggedInContainer from './components/EnsureLoggedInContainer';
 
-import { loadState, saveState } from './localStorage';
+import { loadState, saveState } from './localStorage'
 
-const persistedState = loadState();
+const persistedState = loadState()
 
 const configureStore = () => (
   createStore(
@@ -33,12 +24,12 @@ const configureStore = () => (
     persistedState,
     applyMiddleware(thunk)
   )
-);
+)
 
-const store = configureStore();
+const store = configureStore()
 
 store.subscribe(() => {
-    saveState(store.getState());
+  saveState(store.getState())
 })
 
 const createApolloClient = (cache = {}) =>
@@ -46,31 +37,21 @@ const createApolloClient = (cache = {}) =>
     ssrMode: typeof window !== 'undefined',
     cache: new InMemoryCache().restore(cache),
     link: createUploadLink({
-      // uri: 'http://localhost:9000/graphql'
-      uri: 'https://backend.burst.gallery/graphql'
+      uri: 'http://localhost:9000/graphql'
+      // uri: 'https://backend.burst.gallery/graphql'
     })
   })
 
 const client = createApolloClient()
 
 ReactDOM.render(
-    <ApolloProvider store={ store } client={ client }>
-        <Provider store={store}>
-            <Router>
-                <Switch>
-                    <Route exact path='/' component={Home}/>
-                    <Route path='/admin' component={ Uploader }/>
-                    <EnsureLoggedInContainer>
-                        <Route path='/photos' component={ PhotoGrid }/>
-                        <Route path='/teams' component={ TeamPageContainer }/>
-                        <Route path='/player/:playerId' component={ PlayerPageContainer }/>
-                        <Route path='/checkout' component={ CheckoutFormContainer }/>
-                    </EnsureLoggedInContainer>
-                </Switch>
-            </Router>
-        </Provider>
-    </ApolloProvider>,
-    document.getElementById('root'))
+  <ApolloProvider store={store} client={client}>
+    <Provider store={store}>
+      <NavBar />
+      <Root />
+    </Provider>
+  </ApolloProvider>,
+  document.getElementById('root'))
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
