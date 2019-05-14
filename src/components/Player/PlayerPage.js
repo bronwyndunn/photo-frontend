@@ -26,31 +26,30 @@ class PlayerPage extends Component {
   constructor (props) {
     super(props)
 
-        this.state = {
-          loading: false,
-          visible: false,
-          currentPhotoId: ''
-        }
-
-        this.showModal = this.showModal.bind(this)
-        this.handleAddToCart = this.handleAddToCart.bind(this)
-        this.handleRemoveFromCart = this.handleRemoveFromCart.bind(this)
-        this.handleCancel = this.handleCancel.bind(this)
+    this.state = {
+      loading: false,
+      visible: false,
+      currentPhotoId: ''
     }
 
-    componentDidMount() {
-        window.scrollTo(0,0)
-    }
+    this.showModal = this.showModal.bind(this)
+    this.handleAddToCart = this.handleAddToCart.bind(this)
+    this.handleRemoveFromCart = this.handleRemoveFromCart.bind(this)
+    this.handleCancel = this.handleCancel.bind(this)
+  }
 
-    showModal(photoId) {
-        this.setState({ visible: true, currentPhotoId: photoId })
-    }
+  componentDidMount () {
+    window.scrollTo(0, 0)
+  }
 
-    handleAddToCart(photoId) {
-        this.props.addItemToCart(photoId);
-        this.setState({ visible: false })
-    }
+  showModal (photoId) {
+    this.setState({ visible: true, currentPhotoId: photoId })
+  }
 
+  handleAddToCart (photoId) {
+    this.props.addItemToCart(photoId)
+    this.setState({ visible: false })
+  }
 
   showModal (photoId) {
     this.setState({ visible: true, currentPhotoId: photoId })
@@ -97,10 +96,10 @@ class PlayerPage extends Component {
                 {data.getPhotosByPlayer.map((player) =>
                   <div key={player.id}>
                     <Card
-                      style={{ width: 300, margin: '16px 56px 16px 56px' }}
-                      cover={<img alt='example' src={player.image.url} onClick={() => this.showModal(player.id)} />}
+                      style={{ width: 300, margin: '16px 56px 16px 56px', borderRadius: '0.6em' }}
+                      cover={<img alt='example' src={player.image.url} onClick={() => this.showModal(player.id)} style={{ borderRadius: '0.6em 0.6em 0 0' }} />}
                       actions={[<span>$25</span> ]}
-                      hoverable={true}
+                      hoverable
                     >
                       <CartButton handleAddToCart={() => this.handleAddToCart(player.id)} handleRemoveFromCart={() => this.handleRemoveFromCart(player.id)} />
                     </Card>

@@ -79,7 +79,7 @@ class TeamPage extends Component {
                               style={{ width: 300, margin: '16px 56px 16px 56px' }}
                               cover={<img alt='example' src={data.getPhotosById[0].image.url} />}
                               title={' '}
-                              hoverable={true}
+                              hoverable
                               onClick={() => this.handlePlayerClick(player.id, player.name)}
                             >
                               <Meta
