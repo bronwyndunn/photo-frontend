@@ -37,6 +37,7 @@ class CheckoutForm extends Component {
     const { email } = jsonwebtoken.decode(localStorage.getItem('token'));
     const amount = playerState.amount * 25;
     const photoIds = playerState.cartPhotoIds;
+
     return (
      <ApolloConsumer>
          {client => (
@@ -49,7 +50,7 @@ class CheckoutForm extends Component {
               onClick={async () => {
                 const { data } = await client.mutate({
                   mutation: VERIFY_CHARGE,
-                  variables: { input: {email: email, amount: amount, photoIds: photoIds, token: await this.submit()} }
+                  variables: { input: { email, amount, photoIds, token: await this.submit() } }
                 })
                 if (data.purchase === "success") this.handleSuccess();
               }}

@@ -81,7 +81,7 @@ class PlayerPage extends Component {
               return(
                   <div className='player-wrapper'>
                     {data.getPhotosByPlayer.map((player) =>
-                      <div>
+                      <div key={ player.id }>
                           <Card
                             style={{ width: 300, margin: '16px 56px 16px 56px' }}
                             cover={<img alt="example" src={player.image.url} onClick={() => this.showModal(player.id)} />}

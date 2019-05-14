@@ -73,22 +73,22 @@ class TeamPage extends Component {
                     <div className='team-roster-wrapper'>
                         <div className='team-roster'>
                             {data.getTeam.roster.map((player) =>
-                                <Query query={GET_PHOTO_BY_ID} variables={{ ids: [player.thumbnail] }}>
+                                <Query key={ player.id } query={GET_PHOTO_BY_ID} variables={{ ids: [player.thumbnail] }}>
                                     {({ loading, error, data }) => {
                                         if (error) return <div>{JSON.stringify(data)}</div>
                                         if (loading) return <LoadingIcon/>;
-                                        return(
+                                        return (
                                             <Card
-                                            style={{ width: 300, margin: '16px 56px 16px 56px', boxShadow: '0 0.46875rem 2.1875rem rgba(90,97,105,.1), 0 0.9375rem 1.40625rem rgba(90,97,105,.1), 0 0.25rem 0.53125rem rgba(90,97,105,.12), 0 0.125rem 0.1875rem rgba(90,97,105,.1)' }}
-                                            cover={<img alt="example" src={data.getPhotosById[0].image.url} />}
-                                            title={' '}
-                                            hoverable={true}
-                                            onClick={() => this.handlePlayerClick(player.id, player.name)}
+                                              style={{ width: 300, margin: '16px 56px 16px 56px', boxShadow: '0 0.46875rem 2.1875rem rgba(90,97,105,.1), 0 0.9375rem 1.40625rem rgba(90,97,105,.1), 0 0.25rem 0.53125rem rgba(90,97,105,.12), 0 0.125rem 0.1875rem rgba(90,97,105,.1)' }}
+                                              cover={<img alt="example" src={data.getPhotosById[0].image.url} />}
+                                              title={' '}
+                                              hoverable={true}
+                                              onClick={() => this.handlePlayerClick(player.id, player.name)}
                                             >
-                                            <Meta
-                                            avatar={<Avatar src="https://res-1.cloudinary.com/hireclub/image/upload/c_fill,f_auto,g_north,h_200,q_auto,w_200/nlpxwm4loty0zh77b7hn" />}
-                                            title={player.name}
-                                            />
+                                              <Meta
+                                                title={player.name}
+                                                avatar={<Avatar src='https://res-1.cloudinary.com/hireclub/image/upload/c_fill,f_auto,g_north,h_200,q_auto,w_200/nlpxwm4loty0zh77b7hn' />}
+                                              />
                                             </Card>
                                     )
                                     }}

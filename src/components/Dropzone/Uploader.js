@@ -1,6 +1,6 @@
 import NavBar from '../NavBar'
 import './Dropzone.css'
-import { Dropzone } from './'
+import Dropzone from './Dropzone'
 import React, { Component } from 'react'
 import { withApollo } from 'react-apollo'
 import gql from 'graphql-tag'
@@ -11,6 +11,7 @@ const ADD_PHOTOS = gql`
     addPhotos(photos: $photos)
   }
 `
+
 class Uploader extends Component {
   constructor(props) {
     super(props)
@@ -70,6 +71,7 @@ class Uploader extends Component {
 class PhotoUploadForm extends Component {
   constructor(props) {
     super(props);
+
     this.handleChange = this.handleChange.bind(this)
   }
 

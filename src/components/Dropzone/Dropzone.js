@@ -22,11 +22,13 @@ const Dropzone = (props) => {
         {!isDragActive && 'Click here or drop a file to upload!'}
         {isDragActive && !isDragReject && "Drop it like it's hot!"}
         {isDragReject && "File type not accepted, sorry!"}
-        {isFileTooLarge && (
-          <div className="text-danger mt-2">
-            File is too large.
-          </div>
-        )}
+        {isFileTooLarge &&
+          (
+            <div className="text-danger mt-2">
+              File is too large.
+            </div>
+          )
+        }
       </div>
     </div>
   )
