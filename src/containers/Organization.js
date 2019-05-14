@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 // import TeamPage from '../components/TeamPage'
 
 class OranizationContainer extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
 
     this.state = {
@@ -12,8 +12,7 @@ class OranizationContainer extends Component {
     }
   }
 
-
-  render() {
+  render () {
     return (
       <div>
         HELLLO

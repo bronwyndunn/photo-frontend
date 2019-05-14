@@ -1,37 +1,37 @@
-import React, { Component } from 'react';
-import { Menu, Icon, Button } from 'antd';
+import React, { Component } from 'react'
+import { Menu, Icon, Button } from 'antd'
 
 class CartButton extends Component {
-    constructor(props) {
-        super(props);
+  constructor (props) {
+    super(props)
 
-        this.state = {
-            added: false
-        }
-
-    this.handleAddClick = this.handleAddClick.bind(this);
+    this.state = {
+      added: false
     }
 
-    handleAddClick() {
-        this.setState({ added: true })
-        this.props.handleAddToCart()
-    }
+    this.handleAddClick = this.handleAddClick.bind(this)
+  }
 
-    handleRemoveClick() {
-        this.setState({ added: false })
-        this.props.handleRemoveFromCart()
-    }
+  handleAddClick () {
+    this.setState({ added: true })
+    this.props.handleAddToCart()
+  }
 
-    render() {
-        const buttonText = this.state.added ? "Added!" : "Click to add to cart";
-        return (
-            <div className='cart-button'>
-                <Button className="cart-button-icon" disabled={!this.state.added} size="small" type="primary" shape="circle" icon={"minus"} onClick={() => this.handleRemoveClick()}/>
-                <Button className="cart-button-icon" disabled={this.state.added} size="small" type="primary" shape="circle" icon={this.state.added ? "check" : "plus"} onClick={() => this.handleAddClick()}/>
-                <h4 className='cart-button-text'>{buttonText}</h4>
-            </div>
-        );
+  handleRemoveClick () {
+    this.setState({ added: false })
+    this.props.handleRemoveFromCart()
+  }
+
+  render () {
+    const buttonText = this.state.added ? 'Added!' : 'Click to add to cart'
+    return (
+      <div className='cart-button'>
+        <Button className='cart-button-icon' disabled={!this.state.added} size='small' type='primary' shape='circle' icon={'minus'} onClick={() => this.handleRemoveClick()} />
+        <Button className='cart-button-icon' disabled={this.state.added} size='small' type='primary' shape='circle' icon={this.state.added ? 'check' : 'plus'} onClick={() => this.handleAddClick()} />
+        <h4 className='cart-button-text'>{buttonText}</h4>
+      </div>
+    )
   }
 }
 
-export default CartButton;
+export default CartButton

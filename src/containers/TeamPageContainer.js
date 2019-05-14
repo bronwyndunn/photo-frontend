@@ -1,17 +1,16 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
-import { setCurrentPlayer, addItemToCart } from '../actions/player';
+import { setCurrentPlayer, addItemToCart } from '../actions/player'
 
-import TeamPage from '../components/TeamPage';
+import TeamPage from '../components/TeamPage'
 
 class TeamPageContainer extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
   }
 
-
-  render() {
+  render () {
     return (
       <div>
         <TeamPage />

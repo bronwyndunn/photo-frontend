@@ -1,35 +1,34 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import jsonwebtoken from 'jsonwebtoken';
-import { withRouter } from 'react-router';
+import React from 'react'
+import { connect } from 'react-redux'
+import jsonwebtoken from 'jsonwebtoken'
+import { withRouter } from 'react-router'
 
 class EnsureLoggedInContainer extends React.Component {
-    constructor(props) {
-        super(props);
+  constructor (props) {
+    super(props)
 
-        this.state = {
-            isLoggedIn: "pending"
-        }
+    this.state = {
+      isLoggedIn: 'pending'
     }
-  componentDidMount() {
-      const { isLoggedIn } = this.state;
-      const token = localStorage.getItem('token') || '';
-      if (token) {
-          const decoded = jsonwebtoken.decode(token, { complete: true });
-          const tokenExp = decoded.payload.exp;
-          this.setState({ isLoggedIn: new Date().getTime() / 1000 < tokenExp })
-      }
-      else {
-          this.setState({isLoggedIn: false})
-          this.props.history.push('/');
-      }
+  }
+  componentDidMount () {
+    const { isLoggedIn } = this.state
+    const token = localStorage.getItem('token') || ''
+    if (token) {
+      const decoded = jsonwebtoken.decode(token, { complete: true })
+      const tokenExp = decoded.payload.exp
+      this.setState({ isLoggedIn: new Date().getTime() / 1000 < tokenExp })
+    } else {
+      this.setState({ isLoggedIn: false })
+      this.props.history.push('/')
+    }
     if (!isLoggedIn) {
-      this.props.history.push('/');
+      this.props.history.push('/')
     }
   }
 
-  render() {
-      const { isLoggedIn } = this.state;
+  render () {
+    const { isLoggedIn } = this.state
     if (isLoggedIn) {
       return this.props.children
     } else {
@@ -42,7 +41,7 @@ class EnsureLoggedInContainer extends React.Component {
 // using React Router, you can use `ownProps` to find the URL. Other
 // platforms (Native) or routing libraries have similar ways to find
 // the current position in the app.
-function mapStateToProps(state) {
+function mapStateToProps (state) {
 
 }
 

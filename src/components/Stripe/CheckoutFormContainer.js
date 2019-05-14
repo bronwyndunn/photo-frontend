@@ -1,23 +1,22 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
 import StripeProviderForm from './StripeProviderForm'
 import Cart from './Cart'
 import { clearCart, removeItemFromCart } from '../../actions/player'
 
-
 class CheckoutFormContainer extends Component {
-  render() {
+  render () {
     return (
       <div>
         <StripeProviderForm />
       </div>
-    );
+    )
   }
 }
 
 const mapStateToProps = (state) => ({
-    ...state
+  ...state
 })
 
 const mapDispatchToProps = dispatch => ({

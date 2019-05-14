@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import { Query } from 'react-apollo';
-import gql from 'graphql-tag';
-import { Card, Icon, Avatar } from 'antd';
+import React, { Component } from 'react'
+import { Query } from 'react-apollo'
+import gql from 'graphql-tag'
+import { Card, Icon, Avatar } from 'antd'
 
-const { Meta } = Card;
+const { Meta } = Card
 
 export const GET_TEAMS = gql`
     {
@@ -17,22 +17,22 @@ export const GET_TEAMS = gql`
 `
 
 class PhotoGrid extends Component {
-  render() {
+  render () {
     return (
-        <div>
+      <div>
         <h1>Photo grid</h1>
-        <div className="photo-grid">
+        <div className='photo-grid'>
           <Query query={GET_TEAMS}>
-          {({ loading, data }) => !loading && (
+            {({ loading, data }) => !loading && (
             <>
 
             </>
-          )}
+            )}
           </Query>
-          </div>
         </div>
-    );
+      </div>
+    )
   }
 }
 
-export default PhotoGrid;
+export default PhotoGrid

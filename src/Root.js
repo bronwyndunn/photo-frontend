@@ -13,18 +13,17 @@ import { Switch, Route } from 'react-router'
 import { connect } from 'react-redux'
 import EnsureLoggedInContainer from './components/EnsureLoggedInContainer'
 
-
 export const Root = () => (
   <Router>
     <Switch>
-      <Route exact path='/' component={ Home }/>
-      <Route path='/admin' component={ Uploader }/>
+      <Route exact path='/' component={Home} />
+      <Route path='/admin' component={Uploader} />
       <EnsureLoggedInContainer>
-        <Route path='/organization' component={ OrganizationContainer }/>
-        <Route path='/photos' component={ PhotoGrid }/>
-        <Route path='/teams' component={ TeamPageContainer }/>
-        <Route path='/player/:playerId' component={ PlayerPageContainer }/>
-        <Route path='/checkout' component={ CheckoutFormContainer }/>
+        <Route path='/organization' component={OrganizationContainer} />
+        <Route path='/photos' component={PhotoGrid} />
+        <Route path='/teams' component={TeamPageContainer} />
+        <Route path='/player/:playerId' component={PlayerPageContainer} />
+        <Route path='/checkout' component={CheckoutFormContainer} />
       </EnsureLoggedInContainer>
     </Switch>
   </Router>

@@ -1,17 +1,15 @@
-import React, { Component } from 'react';
-
+import React, { Component } from 'react'
 
 class LoadingIcon extends Component {
-  render() {
+  render () {
     return (
-        <div className="spinner">
-            <div className="bounce1"></div>
-            <div className="bounce2"></div>
-            <div className="bounce3"></div>
-        </div>
-    );
+      <div className='spinner'>
+        <div className='bounce1' />
+        <div className='bounce2' />
+        <div className='bounce3' />
+      </div>
+    )
   }
 }
 
-
-export default LoadingIcon;
+export default LoadingIcon

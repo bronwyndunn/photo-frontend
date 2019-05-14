@@ -1,4 +1,4 @@
-import gql from 'graphql-tag';
+import gql from 'graphql-tag'
 
 export const GET_PHOTOS_BY_PLAYER = gql`
   query getPhotosByPlayer($playerId: ID!) {
