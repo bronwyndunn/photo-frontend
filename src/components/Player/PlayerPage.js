@@ -22,6 +22,19 @@ export const GET_PHOTOS_BY_PLAYER = gql`
   }
 `
 
+export const GET_PHOTO_BY_ID = gql`
+  query getPhotosById($ids: [ID!]!) {
+    getPhotosById(ids: $ids) {
+        id
+        image(spec: { height: 1200, width: 1200, watermark: true }) {
+          url
+          height
+          width
+        }
+    }
+  }
+`
+
 class PlayerPage extends Component {
   constructor (props) {
     super(props)
@@ -36,6 +49,7 @@ class PlayerPage extends Component {
     this.handleAddToCart = this.handleAddToCart.bind(this)
     this.handleRemoveFromCart = this.handleRemoveFromCart.bind(this)
     this.handleCancel = this.handleCancel.bind(this)
+    this.openImageInTab = this.openImageInTab.bind(this)
   }
 
   componentDidMount () {
@@ -76,6 +90,14 @@ class PlayerPage extends Component {
     this.setState({ imageStatus: 'failed to load' })
   }
 
+  async openImageInTab(photoId) {
+      const { data } = await this.props.client.query({
+          query: GET_PHOTO_BY_ID,
+          variables: { ids: [photoId] }
+      })
+      window.open(data.getPhotosById[0].image.url, "_blank")
+  }
+
   render () {
     const { playerState } = this.props
     const { playerId } = this.props.match.params
@@ -97,7 +119,7 @@ class PlayerPage extends Component {
                   <div key={player.id}>
                     <Card
                       style={{ width: 300, margin: '16px 56px 16px 56px', borderRadius: '0.6em' }}
-                      cover={<img alt='example' src={player.image.url} onClick={() => this.showModal(player.id)} style={{ borderRadius: '0.6em 0.6em 0 0' }} />}
+                      cover={<img alt='example' src={player.image.url} onClick={() => this.openImageInTab(player.id)} style={{ borderRadius: '0.6em 0.6em 0 0' }} />}
                       actions={[<span>$25</span> ]}
                       hoverable
                     >
@@ -116,4 +138,4 @@ class PlayerPage extends Component {
   }
 }
 
-export default PlayerPage
+export default withApollo(PlayerPage)
