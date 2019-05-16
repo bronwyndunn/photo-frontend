@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Query } from 'react-apollo'
 import gql from 'graphql-tag'
 import { Card, Icon, Avatar } from 'antd'
+import LazyLoad from 'react-lazyload'
 import './PhotoGrid.css'
 
 const { Meta } = Card
@@ -49,13 +50,22 @@ class PhotoGrid extends Component {
                 <div className='player-wrapper'>
                   {data.getPhotos.map((photo) =>
                     <div key={photo.id}>
-                      <Card
-                        style={{ width: 300, margin: '16px 56px 16px 56px', borderRadius: '0.6em' }}
-                        cover={<img alt='example' src={photo.image.url} onClick={() => this.openImageInTab(photo.id)} style={{ borderRadius: '0.6em 0.6em 0 0' }} />}
-                        actions={[<span>$25</span> ]}
-                        hoverable
-                        >
-                      </Card>
+                        <Card
+                          style={{ width: 300, margin: '16px 56px 16px 56px', borderRadius: '0.6em' }}
+                          cover={
+                            <LazyLoad>
+                              <img
+                                alt='example'
+                                src={photo.image.url}
+                                onClick={() => this.openImageInTab(photo.id)}
+                                style={{ borderRadius: '0.6em 0.6em 0 0' }}
+                                />
+                            </LazyLoad>
+                          }
+                          actions={[<span>$25</span> ]}
+                          hoverable
+                          >
+                        </Card>
                     </div>
                   )}
                 </div>
