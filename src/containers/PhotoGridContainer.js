@@ -1,21 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-// import TeamPage from '../components/TeamPage'
+import { PhotoGrid } from '../components/PhotoGrid'
 
-class OranizationContainer extends Component {
-  constructor (props) {
-    super(props)
-
-    this.state = {
-      hello: '1'
-    }
-  }
-
+class PhotoGridContainer extends Component {
   render () {
     return (
       <div>
-        HELLLO
+        <PhotoGrid props={{id: 'team-id', type: 'team'}}/>
       </div>
     )
   }
@@ -27,4 +19,4 @@ const mapStateToProps = (state) => ({
 
 export default connect(
   mapStateToProps
-)(OranizationContainer)
+)(PhotoGridContainer)

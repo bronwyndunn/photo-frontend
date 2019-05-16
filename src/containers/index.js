@@ -1,1 +1,1 @@
-export { default as OrganizationContainer } from './Organization'
+export { default as PhotoGridContainer } from './PhotoGridContainer'

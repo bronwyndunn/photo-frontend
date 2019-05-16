@@ -1,7 +1,7 @@
 import React from 'react'
 import Home from './components/Home'
-import PhotoGrid from './components/PhotoGrid'
-import { OrganizationContainer } from './containers'
+import { PhotoGrid } from './components/PhotoGrid'
+import { PhotoGridContainer } from './containers'
 import TeamPageContainer from './containers/TeamPageContainer'
 import PlayerPageContainer from './components/Player/PlayerPageContainer'
 import CheckoutFormContainer from './components/Stripe/CheckoutFormContainer'
@@ -19,7 +19,7 @@ export const Root = () => (
       <Route exact path='/' component={Home} />
       <Route path='/admin' component={Uploader} />
       <EnsureLoggedInContainer>
-        <Route path='/organization' component={OrganizationContainer} />
+        <Route path='/test' component={PhotoGridContainer} />
         <Route path='/photos' component={PhotoGrid} />
         <Route path='/teams' component={TeamPageContainer} />
         <Route path='/player/:playerId' component={PlayerPageContainer} />
